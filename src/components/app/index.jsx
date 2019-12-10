@@ -8,7 +8,6 @@ import Control from '../control'
 import Map from '../map'
 
 
-
 export default class App extends Component {
   render () {
     return (
@@ -24,12 +23,12 @@ export default class App extends Component {
             <Radar />
             <Martix />
           </div>
-
         </div>
 
         <div className='col-md-2'>
           <Right />
         </div>
+
       </div>
     )
   }
