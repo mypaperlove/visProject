@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 import echarts from 'echarts'
 import bmap from '../../../node_modules/echarts/extension/bmap/bmap'
 
+import china from './china2.json'
 import './map.css'
 
-import geoJson from './china.json'
-// import './china'
 
 export default class Map extends Component {
   render () {
@@ -14,9 +13,9 @@ export default class Map extends Component {
     )
   }
   componentDidMount () {
-    console.log(geoJson);
-    // let datap = this.solveData();
-    // echarts.registerMap('china', geoJson);
+    echarts.registerMap('china', china);
+    console.log(china);
+
     let midMapOption = {
       backgroundColor: 'transparent',
       title: {
@@ -29,11 +28,12 @@ export default class Map extends Component {
       tooltip: {
         trigger: 'item'
       },
-
-      bmap: {
-        center: [104.114129, 37.550339],
-        zoom: 5,
-        roam: false,
+      geo: {
+        id: 'geo1',
+        map: 'china',
+        roam: true,
+        zoom: 1.7,
+        center: [105.97, 35.71]
       },
 
       visualMap: {
@@ -47,40 +47,33 @@ export default class Map extends Component {
       series: [{
         name: 'mapSer',
         type: 'map',
-        // map:
+        mapType: 'china',
         roam: false,
         geoIndex: 0,
         label: {
           show: true,
         },
         data: [
-          { name: '北京', value: 1 },
-          { name: '天津', value: 2 },
-          { name: '上海', value: 3 },
-          { name: '广东', value: 4 },
-          { name: '台湾', value: 5 },
-          { name: '香港', value: 6 },
-          { name: '澳门', value: 7 }
+          { name: '北京市', value: 1 },
+          { name: '天津市', value: 2 },
+          { name: '上海市', value: 3 },
+          { name: '广东省', value: 4 },
+          { name: '台湾省', value: 5 },
+          { name: '香港特别行政区', value: 6 },
+          { name: '澳门特别行政区', value: 7 }
         ]
       }]
     };
-    // console.log(datap);
+
     var midMap = echarts.init(document.getElementById('map'));
     midMap.setOption(midMapOption);
-
-    let bmap = midMap.getModel().getComponent('bmap').getBMap();
-    bmap.setMapStyleV2({
-      styleId: '8497ad4f7da6e5683f4f5c8e6a9c107d'
-    });
-
-    console.log(midMap.convertToPixel({ geoIndex: 0 }, [214.114129, 37.550339]));
-
 
     midMapOption.series.push({
       name: '访问来源',
       type: 'pie',
+      // coordinateSystem: 'geo',
       radius: '10%',
-      center: midMap.convertToPixel({ seriesIndex: 0 }, [234.114129, 57.550339]),
+      center: midMap.convertToPixel({ geoIndex: 0 }, [105.97, 35.71]),
       data: [
         { value: 335, name: '直接访问' },
         { value: 310, name: '邮件营销' },
@@ -120,148 +113,12 @@ export default class Map extends Component {
         return Math.random() * 200;
       }
     })
-
+    console.log(midMapOption.series);
     midMap.setOption(midMapOption);
+    midMap.on('click', function (params) {
+      console.log(params);
+    })
   }
 
-  solveData () {
-    let datap = [{
-      name: '江苏省',
-      value: 5.3
-    },
-    {
-      name: '北京市',
-      value: 3.8
-    },
-    {
-      name: '上海',
-      value: 4.6
-    },
-    {
-      name: '重庆',
-      value: 3.6
-    },
-    {
-      name: '河北',
-      value: 3.4
-    },
-    {
-      name: '河南',
-      value: 3.2
-    },
-    {
-      name: '云南',
-      value: 1.6
-    },
-    {
-      name: '辽宁',
-      value: 4.3
-    },
-    {
-      name: '黑龙江',
-      value: 4.1
-    },
-    {
-      name: '湖南',
-      value: 2.4
-    },
-    {
-      name: '安徽',
-      value: 3.3
-    },
-    {
-      name: '山东',
-      value: 3.0
-    },
-    {
-      name: '新疆',
-      value: 1
-    },
-    {
-      name: '江苏',
-      value: 3.9
-    },
-    {
-      name: '浙江',
-      value: 3.5
-    },
-    {
-      name: '江西',
-      value: 2.0
-    },
-    {
-      name: '湖北',
-      value: 2.1
-    },
-    {
-      name: '广西',
-      value: 3.0
-    },
-    {
-      name: '甘肃',
-      value: 1.2
-    },
-    {
-      name: '山西',
-      value: 3.2
-    },
-    {
-      name: '内蒙古',
-      value: 3.5
-    },
-    {
-      name: '陕西',
-      value: 2.5
-    },
-    {
-      name: '吉林',
-      value: 4.5
-    },
-    {
-      name: '福建',
-      value: 2.8
-    },
-    {
-      name: '贵州',
-      value: 1.8
-    },
-    {
-      name: '广东',
-      value: 3.7
-    },
-    {
-      name: '青海',
-      value: 0.6
-    },
-    {
-      name: '西藏',
-      value: 0.4
-    },
-    {
-      name: '四川',
-      value: 3.3
-    },
-    {
-      name: '宁夏',
-      value: 0.8
-    },
-    {
-      name: '海南',
-      value: 1.9
-    },
-    {
-      name: '台湾',
-      value: 0.1
-    },
-    {
-      name: '香港',
-      value: 0.1
-    },
-    {
-      name: '澳门',
-      value: 0.1
-    }
-    ];
-    return datap;
-  }
+
 }
