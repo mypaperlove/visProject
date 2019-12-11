@@ -22,7 +22,7 @@ export default class Matrix extends Component {
     ];
 
     let data = [
-      [0, 0, 5],
+      [0, 0, 7],
       [0, 1, 1],
       [0, 2, 0],
       [0, 3, 0],
