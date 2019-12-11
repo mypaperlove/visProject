@@ -3,6 +3,7 @@ import echarts from 'echarts'
 import bmap from '../../../node_modules/echarts/extension/bmap/bmap'
 
 import './map.css'
+
 import geoJson from './china.json'
 // import './china'
 
@@ -13,13 +14,13 @@ export default class Map extends Component {
     )
   }
   componentDidMount () {
-    let datap = this.solveData();
+    console.log(geoJson);
+    // let datap = this.solveData();
+    // echarts.registerMap('china', geoJson);
     let midMapOption = {
       backgroundColor: 'transparent',
       title: {
-        text: '全国主要城市空气质量',
-        subtext: 'data from PM25.in',
-        sublink: 'http://www.pm25.in',
+        text: '全国大学城市分布',
         left: 'center',
         textStyle: {
           color: '#fff'
@@ -28,14 +29,13 @@ export default class Map extends Component {
       tooltip: {
         trigger: 'item'
       },
+
       bmap: {
         center: [104.114129, 37.550339],
         zoom: 5,
         roam: false,
-        mapStyle: {
-          // styleJson: geoJson
-        }
       },
+
       visualMap: {
         min: 0,
         max: 10,
@@ -47,19 +47,83 @@ export default class Map extends Component {
       series: [{
         name: 'mapSer',
         type: 'map',
-        mapType: 'china',
+        // map:
         roam: false,
         geoIndex: 0,
         label: {
           show: true,
         },
-        data: datap,
+        data: [
+          { name: '北京', value: 1 },
+          { name: '天津', value: 2 },
+          { name: '上海', value: 3 },
+          { name: '广东', value: 4 },
+          { name: '台湾', value: 5 },
+          { name: '香港', value: 6 },
+          { name: '澳门', value: 7 }
+        ]
       }]
     };
-    console.log(datap);
+    // console.log(datap);
     var midMap = echarts.init(document.getElementById('map'));
     midMap.setOption(midMapOption);
+
+    let bmap = midMap.getModel().getComponent('bmap').getBMap();
+    bmap.setMapStyleV2({
+      styleId: '8497ad4f7da6e5683f4f5c8e6a9c107d'
+    });
+
+    console.log(midMap.convertToPixel({ geoIndex: 0 }, [214.114129, 37.550339]));
+
+
+    midMapOption.series.push({
+      name: '访问来源',
+      type: 'pie',
+      radius: '10%',
+      center: midMap.convertToPixel({ seriesIndex: 0 }, [234.114129, 57.550339]),
+      data: [
+        { value: 335, name: '直接访问' },
+        { value: 310, name: '邮件营销' },
+        { value: 274, name: '联盟广告' },
+        { value: 235, name: '视频广告' },
+        { value: 400, name: '搜索引擎' }
+      ].sort(function (a, b) { return a.value - b.value; }),
+      roseType: 'radius',
+      label: {
+        normal: {
+          textStyle: {
+            color: 'rgba(255, 255, 255, 0.3)'
+          }
+        }
+      },
+      labelLine: {
+        normal: {
+          lineStyle: {
+            color: 'rgba(255, 255, 255, 0.3)'
+          },
+          smooth: 0.2,
+          length: 10,
+          length2: 20
+        }
+      },
+      itemStyle: {
+        normal: {
+          color: '#c23531',
+          shadowBlur: 200,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      },
+
+      animationType: 'scale',
+      animationEasing: 'elasticOut',
+      animationDelay: function (idx) {
+        return Math.random() * 200;
+      }
+    })
+
+    midMap.setOption(midMapOption);
   }
+
   solveData () {
     let datap = [{
       name: '江苏省',
