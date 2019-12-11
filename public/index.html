@@ -30,6 +30,12 @@
             width: 100%;
         }
         
+        body {
+            overflow: -Scroll;
+            overflow-y: hidden;
+            overflow-x: hidden;
+        }
+        
         #root {
             height: 100%;
             width: 100%;
@@ -51,8 +57,12 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=u9yTx63sUZL03lZTIKpM816bLNdSGeuA"></script>
+
+    <!-- <script src="./node_modules/jquery/dist/jquery.js"></script> -->
     <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
+    <script src="../src/components/map/china.js"></script>
+    <!-- <script src='../src/components/map/china.js'></script> -->
 </body>
 
 </html>

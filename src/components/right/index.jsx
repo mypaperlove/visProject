@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 import './right.css'
 
+import Bar from './bar'
+import Scatter from './scatter'
+import Message from './message'
+
+
 export default class Right extends Component {
   render () {
     return (
       <>
-        <div id='right-1'></div>
-        <div id='right-2'></div>
-        <div id='right-3'></div>
+        <Message />
+        <Bar />
+        <Scatter />
       </>
     )
   }
