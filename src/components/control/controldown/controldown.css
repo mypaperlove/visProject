@@ -1,0 +1,12 @@
+#controldown {
+    width: 100%;
+    height: 70%;
+    /* background-color: rgb(119, 163, 61); */
+}
+div {
+    text-align: center;
+}
+.ant-slider {
+    height: 0.5px !important;
+    padding: 1px !important;
+}
