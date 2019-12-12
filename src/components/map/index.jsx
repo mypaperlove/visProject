@@ -7,7 +7,9 @@ import china from './china.json'
 import table1 from './json/table.json'
 import './map.css'
 
-
+import geoJson from './china.json'
+// import './china'
+//llx ssss
 export default class Map extends Component {
   render () {
     return (
