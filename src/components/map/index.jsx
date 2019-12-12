@@ -2,20 +2,22 @@ import React, { Component } from 'react'
 import echarts from 'echarts'
 import bmap from '../../../node_modules/echarts/extension/bmap/bmap'
 
-import china from './china2.json'
+
+import china from './china.json'
+import table1 from './json/table.json'
 import './map.css'
 
 
 export default class Map extends Component {
   render () {
     return (
-      <div className='col-md-9' id='map'></div>
+      <div className='col-md-9' id='map'>
+
+      </div>
     )
   }
   componentDidMount () {
     echarts.registerMap('china', china);
-    console.log(china);
-
     let midMapOption = {
       backgroundColor: 'transparent',
       title: {
@@ -28,33 +30,18 @@ export default class Map extends Component {
       tooltip: {
         trigger: 'item'
       },
-      geo: {
-        id: 'geo1',
-        map: 'china',
-        roam: true,
-        zoom: 1.7,
-        center: [105.97, 35.71]
-      },
 
-      visualMap: {
-        min: 0,
-        max: 10,
-        left: 'left',
-        top: 'bottom',
-        text: ['高', '低'],           // 文本，默认为数值文本
-        calculable: true
-      },
       series: [{
         name: 'mapSer',
         type: 'map',
-        mapType: 'china',
-        roam: false,
+        roam: true,
         geoIndex: 0,
         label: {
           show: true,
         },
         data: [
           { name: '北京市', value: 1 },
+          { name: '四川省', value: 1 },
           { name: '天津市', value: 2 },
           { name: '上海市', value: 3 },
           { name: '广东省', value: 4 },
@@ -67,15 +54,46 @@ export default class Map extends Component {
 
     var midMap = echarts.init(document.getElementById('map'));
     midMap.setOption(midMapOption);
+    //----------------------------------------------------------------------------------------------------------------------
 
-    midMapOption.series.push({
+    let functionPieChart = this.pieChart;
+    console.log(midMapOption);
+    //-------------------------------------------------------------------------------------------------------------------
+    midMap.on('click', function (params) {
+      // midMap.clear();
+      // midMapOption.geo['map'] = 'sichuan';
+      // midMapOption.geo['center'] = '[104.27606327539083,30.556972940437905]';
+      console.log(midMap.convertToPixel({ geoId: 'geo1' }, [107, 108]));
+      midMap.convertToPixel({ geoId: 'geo1' }, [107, 108]);
+
+      table1.forEach(element => {
+        if (element['省份'] === params.name) {
+          let series = functionPieChart(element, midMap.convertToPixel('geo', [element['lng'], element['lat']]));
+          midMapOption.series.push(series);
+        }
+      });
+      // console.log(midMapOption);
+      midMap.setOption(midMapOption);
+    })
+    midMap.on('georoam', { seriesName: 'mapSer' }, function (params) {
+      midMapOption.series.forEach(element => {
+        if (element.name !== 'mapSer') {
+          element.center = ma
+        }
+      })
+      // console.log(params);
+    })
+  }
+
+  pieChart (obj, position) {
+    console.log();
+    let option = {
       name: '访问来源',
       type: 'pie',
-      // coordinateSystem: 'geo',
       radius: '10%',
-      center: midMap.convertToPixel({ geoIndex: 0 }, [105.97, 35.71]),
+      center: position,
       data: [
-        { value: 335, name: '直接访问' },
+        { value: 335, name: '直接访问', lng: '' },
         { value: 310, name: '邮件营销' },
         { value: 274, name: '联盟广告' },
         { value: 235, name: '视频广告' },
@@ -112,13 +130,8 @@ export default class Map extends Component {
       animationDelay: function (idx) {
         return Math.random() * 200;
       }
-    })
-    console.log(midMapOption.series);
-    midMap.setOption(midMapOption);
-    midMap.on('click', function (params) {
-      console.log(params);
-    })
+    }
+    return option;
   }
-
 
 }
