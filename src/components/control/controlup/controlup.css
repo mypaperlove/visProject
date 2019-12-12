@@ -11,27 +11,27 @@ Header {
 #ButtonA {
     text-align: center !important;
     height: 50px !important;
-    width: 130px !important;
+    width: 200px !important;
     color: red!important;
 }
 #ButtonB {
     text-align: center !important;
     height: 50px !important;
-    width: 130px !important;
+    width: 200px !important;
     color: rgb(216, 147, 19)!important;
 }
 #ButtonC {
     text-align: center !important;
     height: 50px !important;
-    width: 130px !important;
+    width: 200px !important;
     color: rgb(25, 226, 35)!important;
 }
 #ButtonD {
     text-align: center !important;
     height: 50px !important;
-    width: 130px !important;
+    width: 200px !important;
     color: rgb(10, 222, 250)!important;
 }
 input {
-    width: 260px !important;
+    width: 400px !important;
 }
