@@ -77,14 +77,14 @@ export default class Map extends Component {
       // console.log(midMapOption);
       midMap.setOption(midMapOption);
     })
-    midMap.on('georoam', { seriesName: 'mapSer' }, function (params) {
-      midMapOption.series.forEach(element => {
-        if (element.name !== 'mapSer') {
-          element.center = ma
-        }
-      })
-      // console.log(params);
-    })
+    // midMap.on('georoam', { seriesName: 'mapSer' }, function (params) {
+    //   midMapOption.series.forEach(element => {
+    //     if (element.name !== 'mapSer') {
+    //       element.center = ma
+    //     }
+    //   })
+    //   // console.log(params);
+    // })
   }
 
   pieChart (obj, position) {
