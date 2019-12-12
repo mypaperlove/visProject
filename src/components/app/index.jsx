@@ -6,7 +6,7 @@ import Martix from '../matrix'
 import Radar from '../radar'
 import Control from '../control'
 import Map from '../map'
-
+import '../../../node_modules/antd/dist/antd.css'
 
 export default class App extends Component {
   render () {

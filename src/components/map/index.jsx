@@ -5,7 +5,9 @@ import bmap from '../../../node_modules/echarts/extension/bmap/bmap'
 import china from './china2.json'
 import './map.css'
 
-
+import geoJson from './china.json'
+// import './china'
+//llx ssss
 export default class Map extends Component {
   render () {
     return (
