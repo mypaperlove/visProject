@@ -139,10 +139,6 @@ export default class Map extends Component {
       styleId: '8497ad4f7da6e5683f4f5c8e6a9c107d'
     });
 
-
-
-
-
     let mycomOverlayList = [];     //存放当前省数据
 
     //滚轮缩放事件

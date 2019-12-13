@@ -21,11 +21,11 @@ export default class Scatter extends Component {
         bottom: '1%'
       },
       xAxis: {
-        show: false,
+        show: true,
         scale: true
       },
       yAxis: {
-        show: false,
+        show: true,
         scale: true
       },
       dataZoom: [{
