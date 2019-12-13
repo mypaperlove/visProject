@@ -136,7 +136,7 @@ export default class Map extends Component {
     );
     map.enableMapClick = false;
     map.setMapStyleV2({
-      styleId: '8497ad4f7da6e5683f4f5c8e6a9c107d'
+      styleId: '7d20b8a0d9e6a3a1c61e6e3f80bf4a44'
     });
 
     let mycomOverlayList = [];     //存放当前省数据
