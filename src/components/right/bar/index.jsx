@@ -74,15 +74,11 @@ export default class Bar extends Component {
             position: 'insideRight',
             formatter: function (v) {
               return Math.abs(v.data)
-
             }
           }
         },
         data: [-32, -30, -20, -33, -39, -33, -90]
-      }
-
-
-      ]
+      }]
     };
     viewBar.setOption(optionBar);
   }
