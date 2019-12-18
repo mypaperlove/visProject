@@ -1,0 +1,83 @@
+[{
+        "normal": {
+            "borderColor": "rgb(27, 94, 93)",
+            "borderWidth": 4,
+            "shadowBlur": 100,
+            "shadowColor": "rgb(27, 94, 93)",
+            "color": "rgb(27, 94, 93)"
+        }
+    }, {
+        "normal": {
+            "borderColor": "rgb(206, 188, 11)",
+            "borderWidth": 4,
+            "shadowBlur": 100,
+            "shadowColor": "rgb(206, 188, 11)",
+            "color": "rgb(206, 188, 11)"
+        }
+    }, {
+        "normal": {
+            "borderColor": "rgb(165, 190, 198)",
+            "borderWidth": 4,
+            "shadowBlur": 100,
+            "shadowColor": "rgb(165, 190, 198)",
+            "color": "rgb(165, 190, 198)"
+        }
+    }, {
+        "normal": {
+            "borderColor": "rgb(98, 41, 72)",
+            "borderWidth": 4,
+            "shadowBlur": 100,
+            "shadowColor": "rgb(98, 41, 72)",
+            "color": "rgb(98, 41, 72)"
+        }
+    }, {
+        "normal": {
+            "borderColor": "rgb(175, 20, 143)",
+            "borderWidth": 4,
+            "shadowBlur": 100,
+            "shadowColor": "rgb(175, 20, 143)",
+            "color": "rgb(175, 20, 143)"
+        }
+    },
+    {
+        "normal": {
+            "borderColor": "rgb(77, 231, 55)",
+            "borderWidth": 4,
+            "shadowBlur": 100,
+            "shadowColor": "rgb(77, 231, 55)",
+            "color": "rgb(77, 231, 55)"
+        }
+    }, {
+        "normal": {
+            "borderColor": "rgb(26, 83, 246)",
+            "borderWidth": 4,
+            "shadowBlur": 100,
+            "shadowColor": "rgb(26, 83, 246)",
+            "color": "rgb(26, 83, 246)"
+        }
+    }, {
+        "normal": {
+            "borderColor": "rgb(155, 118, 127)",
+            "borderWidth": 4,
+            "shadowBlur": 100,
+            "shadowColor": "rgb(155, 118, 127)",
+            "color": "rgb(155, 118, 127)"
+        }
+    }, {
+        "normal": {
+            "borderColor": "rgb(116, 207, 18)",
+            "borderWidth": 4,
+            "shadowBlur": 100,
+            "shadowColor": "rgb(116, 207, 18)",
+            "color": "rgb(116, 207, 18)"
+        }
+    }, {
+        "normal": {
+            "borderColor": "rgb(98, 224, 224)",
+            "borderWidth": 4,
+            "shadowBlur": 100,
+            "shadowColor": "rgb(98, 224, 224)",
+            "color": "rgb(98, 224, 224)"
+        }
+    }
+]

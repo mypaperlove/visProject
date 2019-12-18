@@ -4,12 +4,13 @@ import bmap from '../../../node_modules/echarts/extension/bmap/bmap'
 // import { baiduMap } from './complexCustomOverla
 // import BMap from 'bmap'
 import $ from 'jquery'
-import table1 from './json/table.json'
+import table1 from '../.././json/table1.json'
 import './map.css'
 import geoJson from './china.json'
 import { Switch } from 'antd';
 
 export default class Map extends Component {
+
   state = {
     map: {},
     BMap: {},
