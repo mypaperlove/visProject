@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import './controldown.css'
-import { Slider } from 'antd';
-
+import { Slider, Switch } from 'antd';
 
 
 export default class Controldown extends Component {
   state = {
+    disabled: false,
     initialValue: 50,
     disabled: false,
     cityScore: '',
@@ -22,55 +22,46 @@ export default class Controldown extends Component {
     this.setState(
       {cityScore: value}
     )
-    console.log('value:',value)
   }
   changeReputationScore(value) {
     this.setState(
       {reputationScore: value}
     )
-    console.log('value:',value)
   }
   changeDoubleFirstClassScore(value) {
     this.setState(
       {doubleFirstClassScore: value}
     )
-    console.log('value:',value)
   }
   changeCurriculumJudgement4th(value) {
     this.setState(
       {curriculumJudgement4th: value}
     )
-    console.log('value:',value)
   }
   changeElectronicsScienceAndTechnology(value) {
     this.setState(
       {electronicsScienceAndTechnology: value}
     )
-    console.log('value:',value)
   }
   changeInformationAndCommunicationEngineering(value) {
     this.setState(
       {informationAndCommunicationEngineering: value}
     )
-    console.log('value:',value)
   }
   changeControlScienceAndEngineering(value) {
     this.setState(
       {controlScienceAndEngineering: value}
     )
-    console.log('value:',value)
   }
   changeComputerScienceAndTechnology(value) {
     this.setState(
       {computerScienceAndTechnology: value}
     )
-    console.log('value:',value)
   }
   changeSoftwareEngineering(value) {
     this.setState(
       {softwareEngineering: value}
     )
-    console.log('value:',value)
   }
 
   handleDisabledChange = disabled => {
@@ -92,6 +83,23 @@ export default class Controldown extends Component {
     })
   }
 
+  handleDisabledChange = disabled => {
+    this.setState({ disabled });
+    if (disabled==true) {
+      var data = []
+      data['cityScore'] = this.state.cityScore
+      data['reputationScore'] = this.state.reputationScore
+      data['doubleFirstClassScore'] = this.state.doubleFirstClassScore
+      data['curriculumJudgement4th'] = this.state.curriculumJudgement4th
+      data['electronicsScienceAndTechnology'] = this.state.electronicsScienceAndTechnology
+      data['informationAndCommunicationEngineering'] = this.state.informationAndCommunicationEngineering
+      data['controlScienceAndEngineering'] = this.state.controlScienceAndEngineering
+      data['computerScienceAndTechnology'] = this.state.computerScienceAndTechnology
+      data['softwareEngineering'] = this.state.softwareEngineering
+      console.log(data)
+    }
+  };
+
   componentDidMount(){
     this.initialValueFun()
   }
@@ -102,6 +110,7 @@ export default class Controldown extends Component {
 
     return (
       <div id='controldown'>
+        <Switch size="default" checkedChildren="重新取值" unCheckedChildren="确定" checked={disabled} onChange={this.handleDisabledChange} />
         <div>城市评分:{cityScore}</div>
         <Slider defaultValue={initialValue} disabled={disabled} onAfterChange={this.changeCityScore.bind(this)} />
         <div>知名度评分:{reputationScore}</div>
