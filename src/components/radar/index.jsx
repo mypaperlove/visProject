@@ -4,9 +4,14 @@ import echarts from 'echarts'
 
 
 export default class Radar extends Component {
+
+  state = {
+
+  }
+
   render () {
     return (
-      <div className='col-md-4' id='radar'></div>
+      <div className='col-md-5' id='radar'></div>
     )
   }
   componentDidMount () {

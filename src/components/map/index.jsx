@@ -136,7 +136,7 @@ export default class Map extends Component {
     );
     map.enableMapClick = false;
     map.setMapStyleV2({
-      styleId: '8497ad4f7da6e5683f4f5c8e6a9c107d'
+      styleId: '5f12c5dfa5e8c70c2acc931abd973798'
     });
 
     let mycomOverlayList = [];     //存放当前省数据
@@ -197,9 +197,7 @@ export default class Map extends Component {
 
     //绘制单个饼图
     var drawPie = function (obj, data) {
-      obj.click(function () {
-        console.log('hhhhhhhhhhhhh');
-      })
+    
       let echarts2 = echarts.init(obj);
       let option = {
 
@@ -222,7 +220,7 @@ export default class Map extends Component {
               { value: data['B+'], name: 'B+' },
               { value: data['B'], name: 'B' }
             ].sort(function (a, b) { return a.value - b.value; }),
-            roseType: 'radius',
+            // roseType: 'area',
             label: {
               normal: {
                 textStyle: {

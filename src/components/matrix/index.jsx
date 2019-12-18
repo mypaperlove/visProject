@@ -2,120 +2,19 @@ import React, { Component } from 'react'
 import './martix.css'
 // import ReactEcharts from 'echarts-for-react'
 import echarts from 'echarts'
-
+import { deleteRow } from './matrix.js'
 export default class Matrix extends Component {
 
-  render() {
-    return (
-      <div className='col-md-8' id='matrix'></div>
-    )
-  }
-  componentDidMount() {
-    let fontsize=12;
-    let items = [{
-      value: '城市',
-      textStyle: {
-        width:'100%',
-        fontSize: fontsize,
-      }
-    },
-    {
-      value: '知名度',
-      textStyle: {
-        width:'100%',
-        fontSize: fontsize
-      }
-    },
-    {
-      value: '双一流',
-      textStyle: {
-        width:'100%',
-        fontSize: fontsize
-      }
-    },
-    {
-      value: '电子科学\n与技术',
-      textStyle: {
-        width:'100%',
-        fontSize: fontsize
-      }
-    },
-    {
-      value: '信息与通\n信工程',
-      textStyle: {
-        width:'100%',
-        fontSize: fontsize
-      }
-    },
-    {
-      value: '控制科学\n与工程',
-      textStyle: {
-        width:'100%',
-        fontSize: fontsize
-      }
-    },
-    {
-      value: '计算机科学\n与技术',
-      textStyle: {
-        width:'100%',
-        fontSize: fontsize
-      }
-    },
-    {
-      value: '软件工程',
-      textStyle: {
-        width:'100%',
-        fontSize: fontsize
-      }
-    },
-    {
-      value: '第四次学\n科评估',
-      textStyle: {
-        width:'100%',
-        fontSize: fontsize
-      }
-    },
-    {
-      value: '电子科学\n与技术',
-      textStyle: {
-        width:'100%',
-        fontSize: fontsize
-      }
-    },
-    {
-      value: '信息与通\n信工程',
-      textStyle: {
-        width:'100%',
-        fontSize: fontsize
-      }
-    },
-    {
-      value: '控制科学\n与工程',
-      textStyle: {
-        fontSize: fontsize,
-      }
-    },
-    {
-      value: '计算机科\n学与技术',
-      textStyle: {
-        width:'100%',
-        fontSize: fontsize,
-      }
-    },
-    {
-      value: '软件工程',
-      textStyle: {
-        width:'100%',
-        fontSize: fontsize
-      }
-    },
-    ];
-    let schools = ['北京大学', 'Friday', 'Thursday',
+  state = {
+    data: [],
+    schools: [],
+    //行属性
+    allschools: ['北京大学', 'Friday', 'Thursday',
       'Wednesday', 'Tuesday', 'Monday', 'Sunday'
-    ];
-
-    let data = [
-      [0, 0, 5],
+    ],
+    //热力图值
+    alldata: [
+      [0, 0, 7],
       [0, 1, 1],
       [0, 2, 3],
       [0, 3, 0],
@@ -213,9 +112,121 @@ export default class Matrix extends Component {
       [6, 11, 0],
       [6, 12, 2],
       [6, 13, 1]
+    ],
+  }
+
+  render() {
+    return (
+      <div className='col-md-7' id='matrix'></div>
+    )
+  }
+  componentDidMount() {
+    let fontsize = 12;
+    //列属性
+    let items = [{
+      value: '城市',
+      textStyle: {
+        width: '100%',
+        fontSize: fontsize,
+      }
+    },
+    {
+      value: '知名度',
+      textStyle: {
+        width: '100%',
+        fontSize: fontsize
+      }
+    },
+    {
+      value: '双一流',
+      textStyle: {
+        width: '100%',
+        fontSize: fontsize
+      }
+    },
+    {
+      value: '电子科学\n与技术',
+      textStyle: {
+        width: '100%',
+        fontSize: fontsize
+      }
+    },
+    {
+      value: '信息与通\n信工程',
+      textStyle: {
+        width: '100%',
+        fontSize: fontsize
+      }
+    },
+    {
+      value: '控制科学\n与工程',
+      textStyle: {
+        width: '100%',
+        fontSize: fontsize
+      }
+    },
+    {
+      value: '计算机科学\n与技术',
+      textStyle: {
+        width: '100%',
+        fontSize: fontsize
+      }
+    },
+    {
+      value: '软件工程',
+      textStyle: {
+        width: '100%',
+        fontSize: fontsize
+      }
+    },
+    {
+      value: '第四次学\n科评估',
+      textStyle: {
+        width: '100%',
+        fontSize: fontsize
+      }
+    },
+    {
+      value: '电子科学\n与技术',
+      textStyle: {
+        width: '100%',
+        fontSize: fontsize
+      }
+    },
+    {
+      value: '信息与通\n信工程',
+      textStyle: {
+        width: '100%',
+        fontSize: fontsize
+      }
+    },
+    {
+      value: '控制科学\n与工程',
+      textStyle: {
+        fontSize: fontsize,
+      }
+    },
+    {
+      value: '计算机科\n学与技术',
+      textStyle: {
+        width: '100%',
+        fontSize: fontsize,
+      }
+    },
+    {
+      value: '软件工程',
+      textStyle: {
+        width: '100%',
+        fontSize: fontsize
+      }
+    },
     ];
 
-    data = data.map(function (item) {
+    let { schools,data} = this.state;
+    let that = this;
+
+    //横纵坐标转换
+    this.state.alldata = this.state.alldata.map(function (item) {
       return [item[1], item[0], item[2] || '-'];
     });
 
@@ -224,7 +235,7 @@ export default class Matrix extends Component {
         position: 'top',
         formatter: function (params) {
           return params.data[2].toFixed(2);
-      }
+        }
       },
       animation: true,
       grid: {
@@ -236,9 +247,9 @@ export default class Matrix extends Component {
         position: 'top',
         type: 'category',
         data: items,
-        axisLabel:{
-          interval:0,
-          rotate:-30
+        axisLabel: {
+          interval: 0,
+          rotate: -30
         }
         ,
         splitArea: {
@@ -250,7 +261,9 @@ export default class Matrix extends Component {
       }],
       yAxis: {
         type: 'category',
-        data: schools,
+        data: this.state.schools,
+        triggerEvent: true,
+        offset: 1,
         splitArea: {
           show: true
         },
@@ -268,9 +281,9 @@ export default class Matrix extends Component {
         bottom: '20%'
       },
       series: [{
-        name: 'Punch Card',
+        name: 'HeatMap',
         type: 'heatmap',
-        data: data,
+        data: this.state.data,
         label: {
           normal: {
             show: false
@@ -284,7 +297,45 @@ export default class Matrix extends Component {
         }
       }]
     };
+
     var midHeatmap = echarts.init(document.getElementById('matrix'));
     midHeatmap.setOption(midHeatmapOption);
+
+    //事件
+    midHeatmap.on('click', function (params) {
+      if (params.componentType == 'yAxis') {
+      }
+    });
+
+    midHeatmap.on('dblclick', function (params) {
+      if (params.componentType == 'yAxis') {
+        for (let i = 0; i < schools.length; i++) {
+          if (schools[i] == params.value) {
+            schools.splice(i, 1);
+            console.log(schools);
+            deleteRow(data,i);
+            midHeatmap.setOption(midHeatmapOption);
+            break;
+          }
+        }
+      }
+    });
+
+    let i = 0;
+    setInterval(() => {
+      if (i < 7) {
+        this.state.schools.push(this.state.allschools[i]);
+        let n = 0;
+        for (n = 0; n < 14; n++) {
+          this.state.data.push(this.state.alldata[i * 13 + n]);
+        }
+        midHeatmapOption.yAxis.data = this.state.schools;
+        midHeatmap.setOption(midHeatmapOption);
+        // console.log(i);
+        // console.log(this.state.allschools[i]);
+        console.log(this.state.alldata);
+        i++;
+      }
+    }, 100)
   }
 }
