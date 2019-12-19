@@ -183,9 +183,6 @@ export default class Map extends Component {
 
 
 
-
-
-
     function ComplexCustomOverlay (point) {
       this._point = point;
     }
