@@ -192,7 +192,40 @@ export default class Map extends Component {
 
     //绘制单个饼图
     var drawPie = function (obj, data) {
+      obj.addEventListener('mousedown', start);
+      let originX, originY;
+      function start (e) {
+        map.disableDragging();
+        originX = $(obj).offset().left;
+        originY = $(obj).offset().top;
+        document.addEventListener('mousemove', move);
+        document.addEventListener('mouseup', stop);
+        // console.log('start', originX, originY);
+        // console.log(obj.style.left, obj.style.top);
+        return false;
+      }
+      function move (e) {
+        let offsetX = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+        let offsetY = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+        let x = offsetX - 400 + 'px';
+        let y = offsetY + 'px'
+        obj.style.left = x;
+        obj.style.top = y;
+        console.log(offsetX, offsetY);
+      }
+      function stop (e) {
+        let offsetX = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+        let offsetY = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+        // if(offsetX<400&offsetY>650) this.props.maptoRadar(data.['学校编号']);
+        // else if(offsetY>650)   this.props.maptoMartix(data['学校编号']);
 
+        map.enableDragging();
+        obj.style.left = originX - 350 + 'px';
+        obj.style.top = originY + 50 + 'px';
+        document.removeEventListener('mousemove', move);
+        document.removeEventListener('mouseup', stop);
+        console.log('stop', obj.style.left, obj.style.top);
+      }
       let echarts2 = echarts.init(obj);
       let option = {
         title: {
@@ -251,11 +284,9 @@ export default class Map extends Component {
       };
       echarts2.setOption(option);
       echarts2.on('dblclick', function (params) {
-
         obj.value = !obj.value;
         console.log(obj.value);
         // obj.style.width = "50px";
-
       })
 
     };
@@ -281,7 +312,6 @@ export default class Map extends Component {
        */
       ComplexCustomOverlay.prototype.initialize = function (map) {
         this._map = map;
-
         //生成div,用来承载ECharts
         var div = this._div = document.createElement("div");
         // 可以根据情况添加些样式信息
