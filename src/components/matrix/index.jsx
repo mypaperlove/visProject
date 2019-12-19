@@ -6,13 +6,20 @@ import echarts from 'echarts'
 export default class Matrix extends Component {
   state = {
     //step5 从父组件app获取数据
-    data: this.props.value
+    data: ''
   }
+  // static getDerivedStateFromProps(nextProps, prevState){
+  //   console.log(prevState.data)
+  //   return {
+  //     data: nextProps.value
+  //   }
+  // }
   render () {
     return (
       <div className='col-md-9' id='matrix'></div>
     )
   }
+  
   componentDidMount () {
     console.log('最终数据：');
     console.log(this.state.data);
@@ -258,5 +265,10 @@ export default class Matrix extends Component {
     };
     var midHeatmap = echarts.init(document.getElementById('matrix'));
     midHeatmap.setOption(midHeatmapOption);
+  }
+
+  componentDidUpdate () {
+    console.log('最终数据：');
+    console.log(this.props.value);
   }
 }

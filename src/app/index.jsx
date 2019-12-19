@@ -15,11 +15,11 @@ export default class App extends Component {
       data: '为什么这样子',
     };
   }
-  handleData(data){
-    console.log('APP组件获取的数据：')
-    console.log(data);
+  handleData = (data) => {
+    // console.log('APP组件获取的数据：')
+    // console.log(data);
     this.setState({
-      data:data
+      data
     })
     // return data;
   }
@@ -33,7 +33,7 @@ export default class App extends Component {
 
           <div id='left-top' className='row no-gutters'>
             {/* step3 从control页面获取数据 */}
-            <Control handlechildData={this.handleData.bind(this)} />
+            <Control handleChildData={this.handleData} />
             <Map />
           </div>
 
