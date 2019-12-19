@@ -4,14 +4,18 @@ import './martix.css'
 import echarts from 'echarts'
 
 export default class Matrix extends Component {
-
-
+  state = {
+    //step5 从父组件app获取数据
+    data: this.props.value
+  }
   render () {
     return (
       <div className='col-md-9' id='matrix'></div>
     )
   }
   componentDidMount () {
+    console.log('最终数据：');
+    console.log(this.state.data);
     let hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',
       '7a', '8a', '9a', '10a', '11a',
       '12p', '1p', '2p', '3p', '4p', '5p',

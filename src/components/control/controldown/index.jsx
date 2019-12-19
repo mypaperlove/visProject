@@ -7,7 +7,6 @@ export default class Controldown extends Component {
   state = {
     disabled: false,
     initialValue: 50,
-    disabled: false,
     cityScore: '',
     reputationScore: '',
     doubleFirstClassScore: '',
@@ -96,7 +95,9 @@ export default class Controldown extends Component {
       data['controlScienceAndEngineering'] = this.state.controlScienceAndEngineering
       data['computerScienceAndTechnology'] = this.state.computerScienceAndTechnology
       data['softwareEngineering'] = this.state.softwareEngineering
-      console.log(data)
+      // console.log(data)
+      this.props.handlechildData(data);//step0 将数据上传给父组件control
+      //console.log(this.props.value);
     }
   };
 
@@ -110,7 +111,7 @@ export default class Controldown extends Component {
 
     return (
       <div id='controldown'>
-        <Switch size="default" checkedChildren="重新取值" unCheckedChildren="确定" checked={disabled} onChange={this.handleDisabledChange} />
+        <Switch size="default" checkedChildren="重新取值" unCheckedChildren="确定" checked={disabled} onChange={this.handleDisabledChange.bind(this)} />
         <div>城市评分:{cityScore}</div>
         <Slider defaultValue={initialValue} disabled={disabled} onAfterChange={this.changeCityScore.bind(this)} />
         <div>知名度评分:{reputationScore}</div>
