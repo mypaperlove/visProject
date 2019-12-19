@@ -4,18 +4,18 @@ import bmap from '../../../node_modules/echarts/extension/bmap/bmap'
 // import { baiduMap } from './complexCustomOverla
 // import BMap from 'bmap'
 import $ from 'jquery'
-
-import table1 from './json/table.json'
-
+import table1 from '../.././json/table1.json'
 import './map.css'
 import geoJson from './china.json'
 import { Switch } from 'antd';
 
 export default class Map extends Component {
+
   state = {
     map: {},
     BMap: {},
     overLaylist: [],
+    zoom: 5
   }
   render () {
     return (
@@ -82,10 +82,7 @@ export default class Map extends Component {
       backgroundColor: 'transparent',
       title: {
         text: '全国大学城市分布',
-        left: 'center',
-        textStyle: {
-          color: '#fff'
-        }
+        left: 'center'
       },
       tooltip: {
         trigger: 'item'
@@ -94,14 +91,6 @@ export default class Map extends Component {
         center: [104.114129, 37.550339],
         zoom: 5,
         roam: true,
-      },
-      visualMap: {
-        min: 0,
-        max: 10,
-        left: 'left',
-        top: 'bottom',
-        text: ['高', '低'],           // 文本，默认为数值文本
-        calculable: true
       },
       series: [{
         name: 'mapSer',
@@ -141,44 +130,50 @@ export default class Map extends Component {
 
     let mycomOverlayList = [];     //存放当前省数据
 
-    //滚轮缩放事件
-    var scrollFunc = function (e) {
-      e = e || window.event;
-      // console.log(map.getZoom());
-    }
-    if (document.addEventListener) {
-      document.addEventListener('DOMMouseScroll', scrollFunc, false);
-    }
-    window.onmousewheel = document.onmousewheel = scrollFunc;
+
 
 
     //地图拖拽事件
     map.addEventListener("dragend", function showInfo () {
-    });
+    })
 
     // 地图缩放事件
-    map.addEventListener('zoomend', function (e) {
-      var zoom = e.target.getZoom();
-
-      // if (zoom < 17) { // 小于17级，统计图
-      //   myCompOverlay.hide();
-      // } else {
-      //   myCompOverlay.show();
-      // }
+    map.addEventListener('zoomend', e => {
+      var zoom = map.getZoom();
+      console.log(zoom);
+      this.setState({
+        zoom: zoom
+      })
+      if (zoom <= 10) {
+        let divs = document.getElementsByClassName('pie');
+        // divs.forEach((div) => {
+        //   console.log(div.show);
+        // })
+        for (let i = 0; i < divs.length; i++) {
+          // console.log(divs[i].style.width);
+          if (divs[i].value) {
+            $(divs[i]).remove();
+            mycomOverlayList = [];
+          }
+        }
+      }
     });
+
+
 
 
     //点击事件
-    map.addEventListener('click', function (e) {
-      // console.log(e);
-      var geocoder = new BMap.Geocoder();
-      var point = new BMap.Point(e.point.lng, e.point.lat);
-      geocoder.getLocation(point, function (geocoderResult, LocationOptions) {
-        // clearOverLay(geocoderResult.address);
-        drawPieSum(geocoderResult.address.substr(0, 2));
-        map.centerAndZoom(new BMap.Point(mycomOverlayList[0]['data']['lng'], mycomOverlayList[0]['data']['lat']), 11);
-      });
-    })
+    map.addEventListener('click', e => {
+      if (this.state.zoom <= 6) {
+        console.log('object');
+        var geocoder = new BMap.Geocoder();
+        var point = new BMap.Point(e.point.lng, e.point.lat);
+        geocoder.getLocation(point, function (geocoderResult, LocationOptions) {
+          drawPieSum(geocoderResult.address.substr(0, 2));
+          map.centerAndZoom(new BMap.Point(mycomOverlayList[0]['data']['lng'], mycomOverlayList[0]['data']['lat']), 11);
+        });
+      }
+    });
 
     //去色
 
@@ -200,7 +195,15 @@ export default class Map extends Component {
     
       let echarts2 = echarts.init(obj);
       let option = {
+        title: {
+          text: data['学校名称'],
+          left: 'center',
+          textStyle: {
+            fontSize: 15,
+            fontWeight: 100
+          }
 
+        },
         tooltip: {
           trigger: 'item',
           formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -247,11 +250,16 @@ export default class Map extends Component {
         ]
       };
       echarts2.setOption(option);
-      echarts2.on('click', function (params) {
-        console.log(params);
-      })
-    };
+      echarts2.on('dblclick', function (params) {
 
+        obj.value = !obj.value;
+        console.log(obj.value);
+        // obj.style.width = "50px";
+
+      })
+
+    };
+    map.disableDoubleClickZoom();
     //重定义ComplexCustomOverlay
     function baiduMap (baiduMap) {
       /**
@@ -281,6 +289,8 @@ export default class Map extends Component {
         div.style.zIndex = baiduMap.Overlay.getZIndex(this._point.lat);
         div.style.width = "100px";
         div.style.height = "100px";
+        div.value = true;
+        div.className = 'pie';
         // marginLeft marginTop 的设置可以让这个div的中心点和给定的经纬度重合
         div.style.marginLeft = '-50px';
         div.style.marginTop = '-50px';
@@ -303,6 +313,9 @@ export default class Map extends Component {
         this._div.style.left = pixel.x + "px";
         this._div.style.top = (pixel.y - 30) + "px";
       }
+      ComplexCustomOverlay.prototype.addEventListener = function (event, fun) {
+        this._div['on' + event] = fun;
+      }
     };
 
 
@@ -314,6 +327,12 @@ export default class Map extends Component {
           // console.log('111111');
           let myCompOverlay = new ComplexCustomOverlay(params.lng, params.lat, drawPie, params);
           map.addOverlay(myCompOverlay);
+          myCompOverlay.addEventListener('dblclick', () => {
+            console.log(myCompOverlay._div);
+            // let _div = myCompOverlay._div;
+
+          })
+
           let temp = {
             data: params,
             overlay: myCompOverlay,

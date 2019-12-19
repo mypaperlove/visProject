@@ -338,4 +338,9 @@ export default class Matrix extends Component {
     // getYLables(10019,[]);
     getMatrixdata([10019,10022]);
   } 
+
+  componentDidUpdate () {
+    console.log('最终数据：');
+    console.log(this.props.value);
+  }
 }
