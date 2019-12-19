@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './bar.css'
 import echarts from 'echarts'
+import { Drawer } from 'antd'
+import table3 from '../../../json/table3.json'
 
 export default class Bar extends Component {
   render () {
@@ -10,6 +12,10 @@ export default class Bar extends Component {
     )
   }
   componentDidMount () {
+    this.draw('10002');
+  }
+  draw (id) {
+    let data = this.datasolve(id);
     let viewBar = echarts.init(document.getElementById('bar'));
     let optionBar = {
       tooltip: {
@@ -24,7 +30,6 @@ export default class Bar extends Component {
         top: '5%',
         bottom: '5%'
       },
-
       xAxis: {
         show: false,
         type: 'value',
@@ -32,23 +37,20 @@ export default class Bar extends Component {
         inverse: true,
         axisLabel: {
           formatter: function (value, index) {
-
             return Math.abs(value)
           }
         },
-
-
       },
       yAxis: {
         type: 'category',
-        data: ['文史', '理工', '经管', '医学', '理学', '农学', '艺术'],
+        data: ['文史', '理工', '经管', '医学', '农学', '艺术'],
         boundaryGap: true,
         axisTick: {
           alignWithLabel: true
         }
       },
       series: [{
-        name: '学科评估',
+        name: '学科建设',
         type: 'bar',
         stack: '1',
         barWidth: 15,
@@ -59,11 +61,11 @@ export default class Bar extends Component {
             position: 'insideRight'
           }
         },
-
-        data: [32, 10, 30, 53, 29, 33, 32]
+        data: [-data['文史数量'], -data['理工数量'], -data['经管数量'], -data['医学数量'], -data['农学数量'], -data['艺术数量']]
+        // data: [-1, -2, -3, -4, -5, -6]
       },
       {
-        name: '学科建设',
+        name: '学科评估',
         type: 'bar',
         stack: '1',
         barWidth: 15,
@@ -77,9 +79,23 @@ export default class Bar extends Component {
             }
           }
         },
-        data: [-32, -30, -20, -33, -39, -33, -90]
+        // data: [1, 2, 3, 4, 5, 6]
+        data: [data['文史分数'], data['理工分数'], data['经管分数'], data['医学分数'], data['农学分数'], data['艺术分数']]
       }]
     };
     viewBar.setOption(optionBar);
   }
+
+
+  datasolve (id) {
+    let targetSchool = [];
+    for (let i = 0; i < table3.length; i++) {
+      if (table3[i]['学校编号'] === id) {
+        targetSchool = table3[i];
+        break;
+      }
+    }
+    return targetSchool;
+  }
+
 }

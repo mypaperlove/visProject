@@ -3,9 +3,6 @@ import './message.css'
 import echarts from 'echarts'
 import itemStyle from './itemstyle.json'
 import table3 from '../../../json/table3.json'
-
-
-
 export default class Message extends Component {
   render () {
     return (

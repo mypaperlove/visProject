@@ -5,33 +5,35 @@
 }
 Header {
     color: rgb(31, 28, 28);
-    background: rgb(36, 199, 104)!important;
+    background: rgb(196, 195, 190)!important;
     /* height: 50px !important; */
 } 
 #ButtonA {
     text-align: center !important;
     height: 50px !important;
-    width: 200px !important;
+    width: 50% !important;
     color: red!important;
 }
 #ButtonB {
     text-align: center !important;
     height: 50px !important;
-    width: 200px !important;
+    width: 50% !important;
     color: rgb(216, 147, 19)!important;
 }
 #ButtonC {
     text-align: center !important;
     height: 50px !important;
-    width: 200px !important;
+    width: 50% !important;
     color: rgb(25, 226, 35)!important;
 }
 #ButtonD {
     text-align: center !important;
     height: 50px !important;
-    width: 200px !important;
+    width: 50% !important;
     color: rgb(10, 222, 250)!important;
 }
-input {
-    width: 400px !important;
+
+.ant-cascader-picker.ant-cascader-picker-show-search{
+    background-color: salmon;
+    width: 100% !important;
 }
