@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './martix.css'
 // import ReactEcharts from 'echarts-for-react'
 import echarts from 'echarts'
-import { deleteRow } from './matrix.js'
+import { deleteRow, getYLables, getMatrixdata } from './matrix.js'
 export default class Matrix extends Component {
 
   state = {
@@ -222,13 +222,14 @@ export default class Matrix extends Component {
     },
     ];
 
-    let { schools,data} = this.state;
+    let { schools, data } = this.state;
     let that = this;
 
     //横纵坐标转换
     this.state.alldata = this.state.alldata.map(function (item) {
       return [item[1], item[0], item[2] || '-'];
     });
+    console.log('alldata', this.state.alldata)
 
     let midHeatmapOption = {
       tooltip: {
@@ -239,8 +240,8 @@ export default class Matrix extends Component {
       },
       animation: true,
       grid: {
-        //height: '50%',
-        //y: '10%'
+        // height: '50%',
+        // y: '10%'
       },
       xAxis: [{
         offset: 1,
@@ -312,8 +313,7 @@ export default class Matrix extends Component {
         for (let i = 0; i < schools.length; i++) {
           if (schools[i] == params.value) {
             schools.splice(i, 1);
-            console.log(schools);
-            deleteRow(data,i);
+            deleteRow(data, i);
             midHeatmap.setOption(midHeatmapOption);
             break;
           }
@@ -325,17 +325,17 @@ export default class Matrix extends Component {
     setInterval(() => {
       if (i < 7) {
         this.state.schools.push(this.state.allschools[i]);
-        let n = 0;
-        for (n = 0; n < 14; n++) {
-          this.state.data.push(this.state.alldata[i * 13 + n]);
+        for (let n = 0; n < 14; n++) {
+          this.state.data.push(this.state.alldata[i * 14 + n]);
         }
         midHeatmapOption.yAxis.data = this.state.schools;
         midHeatmap.setOption(midHeatmapOption);
         // console.log(i);
         // console.log(this.state.allschools[i]);
-        console.log(this.state.alldata);
         i++;
       }
-    }, 100)
-  }
+    }, 100);
+    // getYLables(10019,[]);
+    getMatrixdata([10019,10022]);
+  } 
 }
