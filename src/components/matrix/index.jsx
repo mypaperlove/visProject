@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import './martix.css'
-// import ReactEcharts from 'echarts-for-react'
 import echarts from 'echarts'
-import { deleteRow, getYLables, getMatrixdata } from './matrix.js'
+import { deleteRow, getYLables, getMatrixdata, modifyMatrixData, getHeatMapData, getSchoolsIds } from './matrix.js'
 export default class Matrix extends Component {
 
   state = {
     data: [],
     schools: [],
+    schoolsIds:[10055, 10003, 10213, 10216, 10001, 10022, 10026, 10052, 10080, 10141],
     //行属性
     allschools: ['北京大学', 'Friday', 'Thursday',
       'Wednesday', 'Tuesday', 'Monday', 'Sunday'
@@ -116,10 +116,12 @@ export default class Matrix extends Component {
   }
 
   render() {
+
     return (
-      <div className='col-md-7' id='matrix'></div>
+      <div className='col-md-8' id='matrix'></div>
     )
   }
+
   componentDidMount() {
     let fontsize = 12;
     //列属性
@@ -231,7 +233,7 @@ export default class Matrix extends Component {
     });
     console.log('alldata', this.state.alldata)
 
-    let midHeatmapOption = {
+    var midHeatmapOption = {
       tooltip: {
         position: 'top',
         formatter: function (params) {
@@ -240,7 +242,7 @@ export default class Matrix extends Component {
       },
       animation: true,
       grid: {
-        // height: '50%',
+        height: '75%',
         // y: '10%'
       },
       xAxis: [{
@@ -274,7 +276,7 @@ export default class Matrix extends Component {
       },
       visualMap: {
         min: 0,
-        max: 10,
+        max: 100,
         calculable: false,
         orient: 'vertical',
         right: "3%",
@@ -309,12 +311,30 @@ export default class Matrix extends Component {
     });
 
     midHeatmap.on('dblclick', function (params) {
+      console.log('双击');
+      console.log('schools', that.state.schools);
+      let deletedSchools = that.state.schools.slice();
+      let deletedSchollsIds = that.state.schoolsIds.slice();
       if (params.componentType == 'yAxis') {
-        for (let i = 0; i < schools.length; i++) {
-          if (schools[i] == params.value) {
-            schools.splice(i, 1);
-            deleteRow(data, i);
-            midHeatmap.setOption(midHeatmapOption);
+        for (let i = 0; i < deletedSchools.length; i++) {
+          if (deletedSchools[i] == params.value) {
+            deletedSchools.splice(i, 1);
+            deletedSchollsIds.splice(i,1);
+            console.log('删除后学', deletedSchools);
+            let modifieddata = [];
+            let YLebles = [];
+            let HeatMap = [];
+            modifieddata = modifyMatrixData(getMatrixdata(deletedSchollsIds), that.props.value);
+            YLebles = getYLables(modifieddata);
+            console.log('删除后学校验证',deletedSchools);
+            HeatMap = getHeatMapData(modifieddata);
+            // console.log(YLebles);
+            // console.log(HeatMap);
+            that.setState({
+              data: HeatMap,
+              schools: YLebles,
+              schoolsIds:deletedSchollsIds
+            });
             break;
           }
         }
@@ -336,11 +356,40 @@ export default class Matrix extends Component {
       }
     }, 100);
     // getYLables(10019,[]);
-    getMatrixdata([10019,10022]);
-  } 
-
-  componentDidUpdate () {
-    console.log('最终数据：');
-    console.log(this.props.value);
+    // let kkk = getMatrixdata([10019,10022]);
   }
+
+  componentWillReceiveProps(nextProps) {
+    // console.log('nextprops',nextProps);
+    let modifieddata = [];
+    let YLebles = [];
+    let HeatMap = [];
+    let SchoolsId = [];
+    modifieddata = modifyMatrixData(getMatrixdata(this.state.schoolsIds), nextProps.value);
+    YLebles = getYLables(modifieddata);
+    SchoolsId = getSchoolsIds(modifieddata);
+    HeatMap = getHeatMapData(modifieddata);
+    // console.log(YLebles);
+    // console.log(HeatMap);
+
+    this.setState({
+      data: HeatMap,
+      schools: YLebles,
+      schoolsIds:SchoolsId
+    });
+  }
+
+  componentDidUpdate() {
+    let Option = {
+      yAxis: {
+        data: this.state.schools,
+      },
+      series: [{
+        data: this.state.data,
+      }]
+    };
+    var midHeatmap = echarts.init(document.getElementById('matrix'));
+    midHeatmap.setOption(Option)
+  }
+
 }
