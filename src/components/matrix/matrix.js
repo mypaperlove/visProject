@@ -42,10 +42,8 @@ export function getMatrixdata(schools) {
 
 export function modifyMatrixData(data,weight){
     let modifieddata = [];
-    let max = [184.83,94.6,91,1,1,1,1,1,97.55,9,9,9,9,9];
+    let max = [184.83,94.6,91,1,1,1,1,1,97.55,99,99,99,99,99];
     let weightsocres = [];
-
-    console.log(weight);
     weightsocres.push(weight['cityScore']);
     weightsocres.push(weight['reputationScore']);
     weightsocres.push(weight['doubleFirstClassScore']);
@@ -77,7 +75,7 @@ export function modifyMatrixData(data,weight){
     modifieddata.sort(function(x,y){
         return x[16]-y[16];
     });
-    console.log("modifieddata",modifieddata)
+    // console.log("modifieddata",modifieddata)
     return modifieddata;
 }
 

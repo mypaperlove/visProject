@@ -11,7 +11,7 @@ export default class Matrix extends Component {
   }
 
   render() {
-    console.log('当前shcools',this.state.schools)
+    console.log(this.state.schools)
     return (
       <div className='col-md-8' id='matrix'></div>
     )
@@ -42,28 +42,28 @@ export default class Matrix extends Component {
       }
     },
     {
-      value: '电子科学\n与技术',
+      value: '电子科学与技术',
       textStyle: {
         width: '100%',
         fontSize: fontsize
       }
     },
     {
-      value: '信息与通\n信工程',
+      value: '信息与通信工程',
       textStyle: {
         width: '100%',
         fontSize: fontsize
       }
     },
     {
-      value: '控制科学\n与工程',
+      value: '控制科学与工程',
       textStyle: {
         width: '100%',
         fontSize: fontsize
       }
     },
     {
-      value: '计算机科学\n与技术',
+      value: '计算机科学与技术',
       textStyle: {
         width: '100%',
         fontSize: fontsize
@@ -77,34 +77,34 @@ export default class Matrix extends Component {
       }
     },
     {
-      value: '第四次学\n科评估',
+      value: '第四次学科评估',
       textStyle: {
         width: '100%',
         fontSize: fontsize
       }
     },
     {
-      value: '电子科学\n与技术',
+      value: '电子科学与技术',
       textStyle: {
         width: '100%',
         fontSize: fontsize
       }
     },
     {
-      value: '信息与通\n信工程',
+      value: '信息与通信工程',
       textStyle: {
         width: '100%',
         fontSize: fontsize
       }
     },
     {
-      value: '控制科学\n与工程',
+      value: '控制科学与工程',
       textStyle: {
         fontSize: fontsize,
       }
     },
     {
-      value: '计算机科\n学与技术',
+      value: '计算机科学与技术',
       textStyle: {
         width: '100%',
         fontSize: fontsize,
@@ -127,6 +127,7 @@ export default class Matrix extends Component {
 
     var midHeatmapOption = {
       tooltip: {
+        show:false,
         position: 'top',
         formatter: function (params) {
           return params.data[2].toFixed(2);
@@ -173,7 +174,8 @@ export default class Matrix extends Component {
         orient: 'vertical',
         right: "3%",
         color: ["#3686e7", "#bcfdd6"],
-        bottom: '20%'
+        bottom: '20%',
+        hoverLink:false
       },
       series: [{
         name: 'HeatMap',
@@ -202,8 +204,6 @@ export default class Matrix extends Component {
     });
 
     midHeatmap.on('dblclick', function (params) {
-      console.log('双击');
-      console.log('schools', that.state.schools);
       let deletedSchools = that.state.schools.slice();
       let deletedSchollsIds = that.state.schoolsIds.slice();
       if (params.componentType == 'yAxis') {
@@ -211,16 +211,12 @@ export default class Matrix extends Component {
           if (deletedSchools[i] == params.value) {
             deletedSchools.splice(i, 1);
             deletedSchollsIds.splice(i,1);
-            console.log('删除后学', deletedSchools);
             let modifieddata = [];
             let YLebles = [];
             let HeatMap = [];
             modifieddata = modifyMatrixData(getMatrixdata(deletedSchollsIds), that.props.value);
             YLebles = getYLables(modifieddata);
-            console.log('删除后学校验证',deletedSchools);
             HeatMap = getHeatMapData(modifieddata);
-            // console.log(YLebles);
-            // console.log(HeatMap);
             that.setState({
               data: HeatMap,
               schools: YLebles,
@@ -249,7 +245,7 @@ export default class Matrix extends Component {
     // getYLables(10019,[]);
     // let kkk = getMatrixdata([10019,10022]);
   }
-  
+
 static getDerivedStateFromProps(nextProps,prevState){
   let modifieddata = [];
     let YLebles = [];
@@ -261,8 +257,7 @@ static getDerivedStateFromProps(nextProps,prevState){
     HeatMap = getHeatMapData(modifieddata);
 
     if(SchoolsId != prevState.schoolsIds){
-      console.log('jjjjj');
-      console.log('y',YLebles);
+      console.log('判断过')
       return {
         data:HeatMap,
         schools:YLebles,
