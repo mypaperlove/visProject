@@ -8,115 +8,10 @@ export default class Matrix extends Component {
     data: [],
     schools: [],
     schoolsIds:[10055, 10003, 10213, 10216, 10001, 10022, 10026, 10052, 10080, 10141],
-    //行属性
-    allschools: ['北京大学', 'Friday', 'Thursday',
-      'Wednesday', 'Tuesday', 'Monday', 'Sunday'
-    ],
-    //热力图值
-    alldata: [
-      [0, 0, 7],
-      [0, 1, 1],
-      [0, 2, 3],
-      [0, 3, 0],
-      [0, 4, 0],
-      [0, 5, 0],
-      [0, 6, 0],
-      [0, 7, 0],
-      [0, 8, 0],
-      [0, 9, 0],
-      [0, 10, 0],
-      [0, 11, 2],
-      [0, 12, 4],
-      [0, 13, 1],
-      [1, 0, 7],
-      [1, 1, 0],
-      [1, 2, 0],
-      [1, 3, 0],
-      [1, 4, 0],
-      [1, 5, 0],
-      [1, 6, 0],
-      [1, 7, 0],
-      [1, 8, 0],
-      [1, 9, 0],
-      [1, 10, 5],
-      [1, 11, 2],
-      [1, 12, 2],
-      [1, 13, 6],
-      [2, 0, 1],
-      [2, 1, 1],
-      [2, 2, 0],
-      [2, 3, 0],
-      [2, 4, 0],
-      [2, 5, 0],
-      [2, 6, 0],
-      [2, 7, 0],
-      [2, 8, 0],
-      [2, 9, 0],
-      [2, 10, 3],
-      [2, 11, 2],
-      [2, 12, 1],
-      [2, 13, 9],
-      [3, 0, 7],
-      [3, 1, 3],
-      [3, 2, 0],
-      [3, 3, 0],
-      [3, 4, 0],
-      [3, 5, 0],
-      [3, 6, 0],
-      [3, 7, 0],
-      [3, 8, 1],
-      [3, 9, 0],
-      [3, 10, 5],
-      [3, 11, 4],
-      [3, 12, 7],
-      [3, 13, 14],
-      [4, 0, 1],
-      [4, 1, 3],
-      [4, 2, 0],
-      [4, 3, 0],
-      [4, 4, 0],
-      [4, 5, 1],
-      [4, 6, 0],
-      [4, 7, 0],
-      [4, 8, 0],
-      [4, 9, 2],
-      [4, 10, 4],
-      [4, 11, 4],
-      [4, 12, 2],
-      [4, 13, 4],
-      [5, 0, 2],
-      [5, 1, 1],
-      [5, 2, 0],
-      [5, 3, 3],
-      [5, 4, 0],
-      [5, 5, 0],
-      [5, 6, 0],
-      [5, 7, 0],
-      [5, 8, 2],
-      [5, 9, 0],
-      [5, 10, 4],
-      [5, 11, 1],
-      [5, 12, 5],
-      [5, 13, 10],
-      [6, 0, 1],
-      [6, 1, 0],
-      [6, 2, 0],
-      [6, 3, 0],
-      [6, 4, 0],
-      [6, 5, 0],
-      [6, 6, 0],
-      [6, 7, 0],
-      [6, 8, 0],
-      [6, 9, 0],
-      [6, 10, 1],
-      [6, 11, 0],
-      [6, 12, 2],
-      [6, 13, 1]
-    ],
   }
 
   render() {
-
+    console.log('当前shcools',this.state.schools)
     return (
       <div className='col-md-8' id='matrix'></div>
     )
@@ -223,15 +118,12 @@ export default class Matrix extends Component {
       }
     },
     ];
-
-    let { schools, data } = this.state;
     let that = this;
 
-    //横纵坐标转换
-    this.state.alldata = this.state.alldata.map(function (item) {
-      return [item[1], item[0], item[2] || '-'];
-    });
-    console.log('alldata', this.state.alldata)
+    // //横纵坐标转换
+    // this.state.alldata = this.state.alldata.map(function (item) {
+    //   return [item[1], item[0], item[2] || '-'];
+    // });
 
     var midHeatmapOption = {
       tooltip: {
@@ -303,7 +195,6 @@ export default class Matrix extends Component {
 
     var midHeatmap = echarts.init(document.getElementById('matrix'));
     midHeatmap.setOption(midHeatmapOption);
-
     //事件
     midHeatmap.on('click', function (params) {
       if (params.componentType == 'yAxis') {
@@ -341,43 +232,46 @@ export default class Matrix extends Component {
       }
     });
 
-    let i = 0;
-    setInterval(() => {
-      if (i < 7) {
-        this.state.schools.push(this.state.allschools[i]);
-        for (let n = 0; n < 14; n++) {
-          this.state.data.push(this.state.alldata[i * 14 + n]);
-        }
-        midHeatmapOption.yAxis.data = this.state.schools;
-        midHeatmap.setOption(midHeatmapOption);
-        // console.log(i);
-        // console.log(this.state.allschools[i]);
-        i++;
-      }
-    }, 100);
+    // let i = 0;
+    // setInterval(() => {
+    //   if (i < 7) {
+    //     this.state.schools.push(this.state.allschools[i]);
+    //     for (let n = 0; n < 14; n++) {
+    //       this.state.data.push(this.state.alldata[i * 14 + n]);
+    //     }
+    //     midHeatmapOption.yAxis.data = this.state.schools;
+    //     midHeatmap.setOption(midHeatmapOption);
+    //     // console.log(i);
+    //     // console.log(this.state.allschools[i]);
+    //     i++;
+    //   }
+    // }, 1000);
     // getYLables(10019,[]);
     // let kkk = getMatrixdata([10019,10022]);
   }
-
-  componentWillReceiveProps(nextProps) {
-    // console.log('nextprops',nextProps);
-    let modifieddata = [];
+  
+static getDerivedStateFromProps(nextProps,prevState){
+  let modifieddata = [];
     let YLebles = [];
     let HeatMap = [];
     let SchoolsId = [];
-    modifieddata = modifyMatrixData(getMatrixdata(this.state.schoolsIds), nextProps.value);
+    modifieddata = modifyMatrixData(getMatrixdata(prevState.schoolsIds), nextProps.value);
     YLebles = getYLables(modifieddata);
     SchoolsId = getSchoolsIds(modifieddata);
     HeatMap = getHeatMapData(modifieddata);
-    // console.log(YLebles);
-    // console.log(HeatMap);
 
-    this.setState({
-      data: HeatMap,
-      schools: YLebles,
-      schoolsIds:SchoolsId
-    });
-  }
+    if(SchoolsId != prevState.schoolsIds){
+      console.log('jjjjj');
+      console.log('y',YLebles);
+      return {
+        data:HeatMap,
+        schools:YLebles,
+        schoolsIds:SchoolsId
+      }
+    }else {
+      return ;
+    }
+}
 
   componentDidUpdate() {
     let Option = {

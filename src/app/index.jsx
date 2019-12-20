@@ -11,8 +11,19 @@ import '../../node_modules/antd/dist/antd.css'
 export default class App extends Component {
   constructor(props) {
     super(props);
+    // 李龙兴改的，初始值，接受更改
     this.state = {
-      data: '为什么这样子',
+      data: {
+      cityScore: 50,
+      reputationScore: 50,
+      doubleFirstClassScore:50,
+      curriculumJudgement4th: 50,
+      electronicsScienceAndTechnology: 50,
+      informationAndCommunicationEngineering:50,
+      controlScienceAndEngineering: 50,
+      computerScienceAndTechnology: 50,
+      softwareEngineering: 50,
+      },
     };
   }
   handleData = (data) => {
