@@ -251,6 +251,7 @@ static getDerivedStateFromProps(nextProps,prevState){
     let YLebles = [];
     let HeatMap = [];
     let SchoolsId = [];
+    console.log('nextProps',nextProps)
     modifieddata = modifyMatrixData(getMatrixdata(prevState.schoolsIds), nextProps.value);
     YLebles = getYLables(modifieddata);
     SchoolsId = getSchoolsIds(modifieddata);

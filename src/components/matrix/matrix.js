@@ -44,6 +44,7 @@ export function modifyMatrixData(data,weight){
     let modifieddata = [];
     let max = [184.83,94.6,91,1,1,1,1,1,97.55,99,99,99,99,99];
     let weightsocres = [];
+    console.log('weight',weight);
     weightsocres.push(weight['cityScore']);
     weightsocres.push(weight['reputationScore']);
     weightsocres.push(weight['doubleFirstClassScore']);

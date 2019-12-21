@@ -43,13 +43,15 @@ export default class App extends Component {
         <div className='col-md-10'>
 
           <div id='left-top' className='row no-gutters'>
-            <Control />
+            {/* step3 从control页面获取数据 */}
+            <Control handleChildData={this.handleData} />
             <Map />
           </div>
 
           <div id='left-bottom' className='row no-gutters'>
             <Radar />
-            <Martix />
+            {/* step4 将数据传给matrix组件,问题在于:step4在step3之前执行了*/}
+            <Martix value={this.state.data}/>
           </div>
         </div>
 
