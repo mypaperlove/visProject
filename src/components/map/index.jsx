@@ -125,7 +125,7 @@ export default class Map extends Component {
     );
     map.enableMapClick = false;
     map.setMapStyleV2({
-      styleId: '7d20b8a0d9e6a3a1c61e6e3f80bf4a44'
+      styleId: '5f12c5dfa5e8c70c2acc931abd973798'
     });
 
     let mycomOverlayList = [];     //存放当前省数据
@@ -253,7 +253,7 @@ export default class Map extends Component {
               { value: data['B+'], name: 'B+' },
               { value: data['B'], name: 'B' }
             ].sort(function (a, b) { return a.value - b.value; }),
-            roseType: 'radius',
+            // roseType: 'area',
             label: {
               normal: {
                 textStyle: {
