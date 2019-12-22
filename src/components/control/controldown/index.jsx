@@ -17,49 +17,49 @@ export default class Controldown extends Component {
     computerScienceAndTechnology: '',
     softwareEngineering: ''
   };
-  changeCityScore(value) {
+  changeCityScore (value) {
     this.setState(
-      {cityScore: value}
+      { cityScore: value }
     )
   }
-  changeReputationScore(value) {
+  changeReputationScore (value) {
     this.setState(
-      {reputationScore: value}
+      { reputationScore: value }
     )
   }
-  changeDoubleFirstClassScore(value) {
+  changeDoubleFirstClassScore (value) {
     this.setState(
-      {doubleFirstClassScore: value}
+      { doubleFirstClassScore: value }
     )
   }
-  changeCurriculumJudgement4th(value) {
+  changeCurriculumJudgement4th (value) {
     this.setState(
-      {curriculumJudgement4th: value}
+      { curriculumJudgement4th: value }
     )
   }
-  changeElectronicsScienceAndTechnology(value) {
+  changeElectronicsScienceAndTechnology (value) {
     this.setState(
-      {electronicsScienceAndTechnology: value}
+      { electronicsScienceAndTechnology: value }
     )
   }
-  changeInformationAndCommunicationEngineering(value) {
+  changeInformationAndCommunicationEngineering (value) {
     this.setState(
-      {informationAndCommunicationEngineering: value}
+      { informationAndCommunicationEngineering: value }
     )
   }
-  changeControlScienceAndEngineering(value) {
+  changeControlScienceAndEngineering (value) {
     this.setState(
-      {controlScienceAndEngineering: value}
+      { controlScienceAndEngineering: value }
     )
   }
-  changeComputerScienceAndTechnology(value) {
+  changeComputerScienceAndTechnology (value) {
     this.setState(
-      {computerScienceAndTechnology: value}
+      { computerScienceAndTechnology: value }
     )
   }
-  changeSoftwareEngineering(value) {
+  changeSoftwareEngineering (value) {
     this.setState(
-      {softwareEngineering: value}
+      { softwareEngineering: value }
     )
   }
 
@@ -67,8 +67,8 @@ export default class Controldown extends Component {
     this.setState({ disabled });
   }
 
-  initialValueFun() {
-    console.log("hhh")
+  initialValueFun () {
+    // console.log("hhh")
     this.setState({
       cityScore: this.state.initialValue,
       reputationScore: this.state.initialValue,
@@ -84,7 +84,7 @@ export default class Controldown extends Component {
 
   handleDisabledChange = disabled => {
     this.setState({ disabled });
-    if (disabled==true) {
+    if (disabled == true) {
       var data = []
       data['cityScore'] = this.state.cityScore
       data['reputationScore'] = this.state.reputationScore
@@ -101,12 +101,12 @@ export default class Controldown extends Component {
     }
   };
 
-  componentDidMount(){
+  componentDidMount () {
     this.initialValueFun()
   }
   render () {
-    const { initialValue, disabled, cityScore, reputationScore, doubleFirstClassScore, curriculumJudgement4th, 
-      electronicsScienceAndTechnology, informationAndCommunicationEngineering, controlScienceAndEngineering, 
+    const { initialValue, disabled, cityScore, reputationScore, doubleFirstClassScore, curriculumJudgement4th,
+      electronicsScienceAndTechnology, informationAndCommunicationEngineering, controlScienceAndEngineering,
       computerScienceAndTechnology, softwareEngineering } = this.state;
 
     return (
@@ -115,23 +115,23 @@ export default class Controldown extends Component {
         <div>城市评分:{cityScore}</div>
         <Slider defaultValue={initialValue} disabled={disabled} onAfterChange={this.changeCityScore.bind(this)} />
         <div>知名度评分:{reputationScore}</div>
-        <Slider defaultValue={initialValue} disabled={disabled} onAfterChange={this.changeReputationScore.bind(this)}/>
+        <Slider defaultValue={initialValue} disabled={disabled} onAfterChange={this.changeReputationScore.bind(this)} />
         <div>双一流评分:{doubleFirstClassScore}</div>
         <Slider defaultValue={initialValue} disabled={disabled} onAfterChange={this.changeDoubleFirstClassScore.bind(this)} />
         <div>第四轮学科评估评分:{curriculumJudgement4th}</div>
         <Slider defaultValue={initialValue} disabled={disabled} onAfterChange={this.changeCurriculumJudgement4th.bind(this)} />
         <div>电子科学与技术评分:{electronicsScienceAndTechnology}</div>
-        <Slider defaultValue={initialValue} disabled={disabled} onAfterChange={this.changeElectronicsScienceAndTechnology.bind(this)}/>
+        <Slider defaultValue={initialValue} disabled={disabled} onAfterChange={this.changeElectronicsScienceAndTechnology.bind(this)} />
         <div>信息与通信工程评分:{informationAndCommunicationEngineering}</div>
         <Slider defaultValue={initialValue} disabled={disabled} onAfterChange={this.changeInformationAndCommunicationEngineering.bind(this)} />
         <div>控制科学与工程评分:{controlScienceAndEngineering}</div>
         <Slider defaultValue={initialValue} disabled={disabled} onAfterChange={this.changeControlScienceAndEngineering.bind(this)} />
         <div>计算机科学与技术评分:{computerScienceAndTechnology}</div>
-        <Slider defaultValue={initialValue} disabled={disabled} onAfterChange={this.changeComputerScienceAndTechnology.bind(this)}/>
+        <Slider defaultValue={initialValue} disabled={disabled} onAfterChange={this.changeComputerScienceAndTechnology.bind(this)} />
         <div>软件工程评分:{softwareEngineering}</div>
         <Slider defaultValue={initialValue} disabled={disabled} onAfterChange={this.changeSoftwareEngineering.bind(this)} />
       </div>
     );
-  
+
   };
 }

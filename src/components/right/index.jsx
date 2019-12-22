@@ -10,8 +10,8 @@ export default class Right extends Component {
   render () {
     return (
       <>
-        <Message />
-        <Bar />
+        <Message maptoMessage={this.props.maptoMessage} />
+        <Bar maptoBar={this.props.maptoBar} />
         <Scatter />
       </>
     )

@@ -14,16 +14,20 @@ export default class App extends Component {
     // 李龙兴改的，初始值，接受更改
     this.state = {
       data: {
-      cityScore: 50,
-      reputationScore: 50,
-      doubleFirstClassScore:50,
-      curriculumJudgement4th: 50,
-      electronicsScienceAndTechnology: 50,
-      informationAndCommunicationEngineering:50,
-      controlScienceAndEngineering: 50,
-      computerScienceAndTechnology: 50,
-      softwareEngineering: 50,
+        cityScore: 50,
+        reputationScore: 50,
+        doubleFirstClassScore: 50,
+        curriculumJudgement4th: 50,
+        electronicsScienceAndTechnology: 50,
+        informationAndCommunicationEngineering: 50,
+        controlScienceAndEngineering: 50,
+        computerScienceAndTechnology: 50,
+        softwareEngineering: 50,
       },
+      maptoRadar: '10003',
+      maptoMartix: '10003',
+      maptoMessage: '10003',
+      maptoBar: '10003',
     };
   }
   handleData = (data) => {
@@ -34,7 +38,27 @@ export default class App extends Component {
     })
     // return data;
   }
-  componentDidMount(){
+  maptoRadar = (data) => {
+    this.setState({
+      maptoRadar: data
+    })
+  }
+  maptoMartix = (data) => {
+    this.setState({
+      maptoMartix: data
+    })
+  }
+  maptoMessage = (data) => {
+    this.setState({
+      maptoMessage: data
+    })
+  }
+  maptoBar = (data) => {
+    this.setState({
+      maptoBar: data
+    })
+  }
+  componentDidMount () {
     //
   }
   render () {
@@ -45,18 +69,18 @@ export default class App extends Component {
           <div id='left-top' className='row no-gutters'>
             {/* step3 从control页面获取数据 */}
             <Control handleChildData={this.handleData} />
-            <Map />
+            <Map maptoRadar={this.maptoRadar} maptoMartix={this.maptoMartix} maptoMessage={this.maptoMessage} maptoBar={this.maptoBar} />
           </div>
 
           <div id='left-bottom' className='row no-gutters'>
-            <Radar />
+            <Radar id={this.state.maptoRadar} />
             {/* step4 将数据传给matrix组件,问题在于:step4在step3之前执行了*/}
-            <Martix value={this.state.data}/>
+            <Martix value={this.state.data} id={this.state.maptoMartix} />
           </div>
         </div>
 
         <div className='col-md-2'>
-          <Right />
+          <Right maptoMessage={this.state.maptoMessage} maptoBar={this.state.maptoBar} />
         </div>
 
       </div>

@@ -132,7 +132,6 @@ export default class Map extends Component {
 
 
 
-
     //地图拖拽事件
     map.addEventListener("dragend", function showInfo () {
     })
@@ -165,7 +164,7 @@ export default class Map extends Component {
     //点击事件
     map.addEventListener('click', e => {
       if (this.state.zoom <= 6) {
-        console.log('object');
+        // console.log('object');
         var geocoder = new BMap.Geocoder();
         var point = new BMap.Point(e.point.lng, e.point.lat);
         geocoder.getLocation(point, function (geocoderResult, LocationOptions) {
@@ -188,17 +187,18 @@ export default class Map extends Component {
     }
 
     //绘制单个饼图
-    var drawPie = function (obj, data) {
-      obj.addEventListener('mousedown', start);
+    var drawPie = (obj, data) => {
+      // console.log(this);
+      obj.addEventListener('mousedown', start.bind(this));
       let originX, originY;
       function start (e) {
+        // console.log("===================", this);
         map.disableDragging();
         originX = $(obj).offset().left;
         originY = $(obj).offset().top;
         document.addEventListener('mousemove', move);
-        document.addEventListener('mouseup', stop);
-        // console.log('start', originX, originY);
-        // console.log(obj.style.left, obj.style.top);
+        document.addEventListener('mouseup', stop.bind(this));
+        // console.log(originX, originY);
         return false;
       }
       function move (e) {
@@ -208,75 +208,74 @@ export default class Map extends Component {
         let y = offsetY + 'px'
         obj.style.left = x;
         obj.style.top = y;
-        console.log(offsetX, offsetY);
+        // console.log(x, y);
       }
       function stop (e) {
+        // console.log(this);
         let offsetX = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
         let offsetY = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-        // if(offsetX<400&offsetY>650) this.props.maptoRadar(data.['学校编号']);
-        // else if(offsetY>650)   this.props.maptoMartix(data['学校编号']);
-
+        if (offsetX < 400 & offsetY > 650) this.props.maptoRadar(data['学校编号']);
+        else if (offsetY > 650) this.props.maptoMartix(data['学校编号']);
         map.enableDragging();
         obj.style.left = originX - 350 + 'px';
         obj.style.top = originY + 50 + 'px';
         document.removeEventListener('mousemove', move);
         document.removeEventListener('mouseup', stop);
-        console.log('stop', obj.style.left, obj.style.top);
+        // console.log(this.props.handleMapData);
+
       }
       let echarts2 = echarts.init(obj);
       let option = {
-        title: {
-          text: data['学校名称'],
-          left: 'center',
-          textStyle: {
-            fontSize: 15,
-            fontWeight: 100
-          }
+        // title: {
+        //   text: data['学校名称'],
+        //   left: 'center',
+        //   textStyle: {
+        //     fontSize: 15,
+        //     fontWeight: 100
+        //   }
 
-        },
+        // },
         tooltip: {
           trigger: 'item',
           formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
         series: [
           {
-            name: '访问来源',
+            name: '面积模式',
             type: 'pie',
-            z: 10,
-            zlevel: 10,
-            radius: '75%',
-            center: ['50%', '50%'],
+            radius: [10, 50],
+            center: ['75%', '50%'],
+            roseType: 'area',
             data: [
               { value: data['A+'], name: 'A+' },
               { value: data['A'], name: 'A' },
               { value: data['A-'], name: 'A-' },
               { value: data['B+'], name: 'B+' },
-              { value: data['B'], name: 'B' }
-            ].sort(function (a, b) { return a.value - b.value; }),
-            // roseType: 'area',
+              { value: data['B'], name: 'B' },
+              { value: data['B-'], name: 'B-' },
+              { value: data['C+'], name: 'C+' },
+              { value: data['C'], name: 'C' },
+              { value: data['C-'], name: 'C-' }
+            ],
             label: {
               normal: {
-                textStyle: {
-                  color: 'rgba(255, 255, 255, 0.3)'
-                }
+                show: false
+              },
+              emphasis: {
+                show: true
               }
             },
-            labelLine: {
+            lableLine: {
               normal: {
-                lineStyle: {
-                  color: 'rgba(255, 255, 255, 0.3)'
-                },
-                smooth: 0.2,
-                length: 10,
-                length2: 20
+                show: false
+              },
+              emphasis: {
+                show: true
               }
             },
-            animationType: 'scale',
-            animationEasing: 'elasticOut',
-            animationDelay: function (idx) {
-              return Math.random() * 200;
-            }
           }
+
+
         ]
       };
       echarts2.setOption(option);
@@ -284,7 +283,10 @@ export default class Map extends Component {
         obj.value = !obj.value;
         console.log(obj.value);
         // obj.style.width = "50px";
-      })
+        // console.log(this);
+        this.props.maptoMessage(data['学校编号']);
+        this.props.maptoBar(data['学校编号']);
+      }.bind(this));
 
     };
     map.disableDoubleClickZoom();
@@ -314,8 +316,8 @@ export default class Map extends Component {
         // 可以根据情况添加些样式信息
         // div.style.backgroundColor = "#fff";
         div.style.zIndex = baiduMap.Overlay.getZIndex(this._point.lat);
-        div.style.width = "100px";
-        div.style.height = "100px";
+        div.style.width = "200px";
+        div.style.height = "200px";
         div.value = true;
         div.className = 'pie';
         // marginLeft marginTop 的设置可以让这个div的中心点和给定的经纬度重合
@@ -355,7 +357,7 @@ export default class Map extends Component {
           let myCompOverlay = new ComplexCustomOverlay(params.lng, params.lat, drawPie, params);
           map.addOverlay(myCompOverlay);
           myCompOverlay.addEventListener('dblclick', () => {
-            console.log(myCompOverlay._div);
+            // console.log(myCompOverlay._div);
             // let _div = myCompOverlay._div;
 
           })

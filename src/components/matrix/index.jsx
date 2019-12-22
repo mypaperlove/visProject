@@ -7,17 +7,17 @@ export default class Matrix extends Component {
   state = {
     data: [],
     schools: [],
-    schoolsIds:[10055, 10003, 10213, 10216, 10001, 10022, 10026, 10052, 10080, 10141],
+    schoolsIds: [10055, 10003, 10213, 10216, 10001, 10022, 10026, 10052, 10080, 10141],
   }
 
-  render() {
-    console.log(this.state.schools)
+  render () {
+    // console.log(this.state.schools)
     return (
       <div className='col-md-8' id='matrix'></div>
     )
   }
 
-  componentDidMount() {
+  componentDidMount () {
     let fontsize = 12;
     //列属性
     let items = [{
@@ -127,7 +127,7 @@ export default class Matrix extends Component {
 
     var midHeatmapOption = {
       tooltip: {
-        show:false,
+        show: false,
         position: 'top',
         formatter: function (params) {
           return params.data[2].toFixed(2);
@@ -175,7 +175,7 @@ export default class Matrix extends Component {
         right: "3%",
         color: ["#3686e7", "#bcfdd6"],
         bottom: '20%',
-        hoverLink:false
+        hoverLink: false
       },
       series: [{
         name: 'HeatMap',
@@ -210,7 +210,7 @@ export default class Matrix extends Component {
         for (let i = 0; i < deletedSchools.length; i++) {
           if (deletedSchools[i] == params.value) {
             deletedSchools.splice(i, 1);
-            deletedSchollsIds.splice(i,1);
+            deletedSchollsIds.splice(i, 1);
             let modifieddata = [];
             let YLebles = [];
             let HeatMap = [];
@@ -220,7 +220,7 @@ export default class Matrix extends Component {
             that.setState({
               data: HeatMap,
               schools: YLebles,
-              schoolsIds:deletedSchollsIds
+              schoolsIds: deletedSchollsIds
             });
             break;
           }
@@ -246,30 +246,31 @@ export default class Matrix extends Component {
     // let kkk = getMatrixdata([10019,10022]);
   }
 
-static getDerivedStateFromProps(nextProps,prevState){
-  let modifieddata = [];
+  static getDerivedStateFromProps (nextProps, prevState) {
+    let modifieddata = [];
     let YLebles = [];
     let HeatMap = [];
     let SchoolsId = [];
-    console.log('nextProps',nextProps)
+    // console.log('nextProps', nextProps)
+
     modifieddata = modifyMatrixData(getMatrixdata(prevState.schoolsIds), nextProps.value);
     YLebles = getYLables(modifieddata);
     SchoolsId = getSchoolsIds(modifieddata);
     HeatMap = getHeatMapData(modifieddata);
 
-    if(SchoolsId != prevState.schoolsIds){
-      console.log('判断过')
+    if (SchoolsId != prevState.schoolsIds) {
+      // console.log('判断过')
       return {
-        data:HeatMap,
-        schools:YLebles,
-        schoolsIds:SchoolsId
+        data: HeatMap,
+        schools: YLebles,
+        schoolsIds: SchoolsId
       }
-    }else {
-      return ;
+    } else {
+      return;
     }
-}
+  }
 
-  componentDidUpdate() {
+  componentDidUpdate () {
     let Option = {
       yAxis: {
         data: this.state.schools,

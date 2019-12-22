@@ -4,13 +4,22 @@ import echarts from 'echarts'
 import itemStyle from './itemstyle.json'
 import table3 from '../../../json/table3.json'
 export default class Message extends Component {
+  state = {
+    id: '10003'
+  }
   render () {
     return (
-      <div id='message'></div>
+
+      <div id='mess'>
+        <div id='panel'>Label</div>
+        <div id='message'></div>
+      </div>
+
     )
   }
   componentDidMount () {
-    this.draw("10002");
+    // console.log(this.state.id);
+    this.draw(this.state.id);
   }
 
   draw (id) {
@@ -23,7 +32,7 @@ export default class Message extends Component {
         return idx * 100;
       },
       animationEasingUpdate: 'bounceIn',
-      color: ['#fff', '#fff', '#fff'],
+      // color: ['#fff', '#fff', '#fff'],
       series: [{
         type: 'graph',
         layout: 'force',
@@ -33,6 +42,7 @@ export default class Message extends Component {
         },
         roam: true,
         label: {
+          color: '#4d4d4d',
           normal: {
             show: true
           },
@@ -42,7 +52,7 @@ export default class Message extends Component {
     }
     let mychart = echarts.init(document.getElementById('message'));
     mychart.setOption(option);
-    console.log('asddsasda');
+    // console.log('asddsasda');
   }
   solveData (id) {
     let data = [];
@@ -60,10 +70,26 @@ export default class Message extends Component {
         "symbolSize": 50,
         "draggable": true,
         "itemStyle": itemStyle[i],
+        "label": {
+          color: 'auto',
+          normal: {
+            show: true
+          },
+        },
       };
       data.push(obj);
     }
-    console.log(findData);
+    // console.log(findData);
     return data;
+  }
+  static getDerivedStateFromProps (nextProps, prevState) {
+    // console.log(nextProps.maptoMessage);
+    return {
+      id: nextProps.maptoMessage
+    }
+  }
+
+  componentDidUpdate () {
+    this.draw(this.state.id);
   }
 }

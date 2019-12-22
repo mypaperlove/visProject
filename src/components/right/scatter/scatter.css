@@ -1,4 +1,21 @@
 #scatter {
     width: 100%;
+    height: 93%;
+}
+
+#scatt {
+    width: 100%;
     height: 30%;
+    border-left: 3px solid dimgray;
+    border-right: 5px solid dimgray;
+}
+
+#pane {
+    width: 100%;
+    height: 7%;
+    background-color: rgb(56, 69, 85);
+    /* line-height: 5%; */
+    color: white;
+    text-align: left;
+    font-size: 8px;
 }
