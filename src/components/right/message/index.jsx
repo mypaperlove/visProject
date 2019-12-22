@@ -41,12 +41,6 @@ export default class Message extends Component {
           edgeLength: 10
         },
         roam: true,
-        label: {
-          color: '#4d4d4d',
-          normal: {
-            show: true
-          },
-        },
         data: data
       }]
     }
@@ -71,6 +65,8 @@ export default class Message extends Component {
         "draggable": true,
         "itemStyle": itemStyle[i],
         "label": {
+          show: false,
+          fontWeight: 'bolder',
           color: 'auto',
           normal: {
             show: true
