@@ -7,8 +7,8 @@ export default class Matrix extends Component {
   state = {
     data: [],
     schools: [],
-    // schoolsIds: [10055, 10213, 10216, 10001, 10022, 10026, 10052, 10080, 10141],
-    schoolsIds: [],
+    schoolsIds: [10001, 10003, 10007,10055,10610],
+    // schoolsIds: [],
   }
 
   render () {

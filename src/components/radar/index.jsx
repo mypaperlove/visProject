@@ -10,7 +10,9 @@ export default class Radar extends Component {
     state = {
         legend: [],//['qinghua','beida']
         data: {},//
-        schoolids: [],
+        schoolids: [10001, 10003, 10006],
+        // schoolsIds: [10055, 10213, 10216, 10001, 10022, 10026, 10052, 10080, 10141],
+
 
     }
 
@@ -202,8 +204,20 @@ export default class Radar extends Component {
         };
         let radar = echarts.init(document.getElementById('radar'));
         radar.setOption(option);
+
+        let ids = this.state.schoolids.slice();
+        let legend = [];
+        let data = {};
+
+        legend = getSchoolsNames(ids);
+        data = getData(ids);
+        this.setState({
+            legend: legend,
+            data: data,
+            schoolids: ids
+        });
         radar.on('dblclick', function (params) {
-            console.log("schoolsids",that.state.schoolids)
+            console.log("schoolsids", that.state.schoolids)
             let ids = that.state.schoolids.slice();
             let legend = [];
             let data = {};
@@ -218,9 +232,9 @@ export default class Radar extends Component {
                 legend = getSchoolsNames(ids);
                 data = getData(ids);
                 that.setState({
-                    legend:legend,
-                    data:data,
-                    schoolids:ids
+                    legend: legend,
+                    data: data,
+                    schoolids: ids
                 });
             }
         });
