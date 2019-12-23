@@ -7,7 +7,8 @@ export default class Matrix extends Component {
   state = {
     data: [],
     schools: [],
-    schoolsIds: [10055, 10213, 10216, 10001, 10022, 10026, 10052, 10080, 10141],
+    // schoolsIds: [10055, 10213, 10216, 10001, 10022, 10026, 10052, 10080, 10141],
+    schoolsIds: [],
   }
 
   render () {
@@ -198,12 +199,28 @@ export default class Matrix extends Component {
     var midHeatmap = echarts.init(document.getElementById('matrix'));
     midHeatmap.setOption(midHeatmapOption);
     //事件
+    var TimeFn = null;
     midHeatmap.on('click', function (params) {
-      if (params.componentType == 'yAxis') {
-      }
+      clearTimeout(TimeFn);
+      let schools = that.state.schools.slice();
+      let ids = that.state.schoolsIds.slice();
+      TimeFn = setTimeout(function(){
+        if (params.componentType == 'yAxis') {
+          for(let index in schools){
+            if(params.value == schools[index]){
+              console.log('被选中学校ID',ids[index]);
+              that.props.matrixtoRadar(ids[index]);
+              break;
+            }
+          }
+        }
+      },300)
+      
     });
 
     midHeatmap.on('dblclick', function (params) {
+      
+      clearTimeout(TimeFn);
       let deletedSchools = that.state.schools.slice();
       let deletedSchollsIds = that.state.schoolsIds.slice();
       if (params.componentType == 'yAxis') {
@@ -253,13 +270,11 @@ export default class Matrix extends Component {
     let SchoolsId = [];
     // console.log('nextProps', nextProps)
 
-    console.log('传入的id',Props)
-    
+    // console.log('传入的id',Props)
     modifieddata = modifyMatrixData(getMatrixdata(addNewSchoolId(Props.id,prevState.schoolsIds)), Props.value);
     YLebles = getYLables(modifieddata);
     SchoolsId = getSchoolsIds(modifieddata);
     HeatMap = getHeatMapData(modifieddata);
-    console.log('schoolsid',SchoolsId)
     if (SchoolsId !== prevState.schoolsIds) {
       // console.log('判断过')
       return {

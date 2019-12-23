@@ -26,9 +26,10 @@ export default class App extends Component {
       },
       buttontoMap: '双一流',
       maptoRadar: '10003',
-      maptoMartix: '10003',
+      maptoMartix: '',
       maptoMessage: '10003',
       maptoBar: '10003',
+      matrixtoRadar:'',
     };
   }
   handleData = (data) => {
@@ -48,6 +49,10 @@ export default class App extends Component {
     this.setState({
       maptoMartix: data
     })
+    console.log('传完了');
+    this.setState({
+      maptoMartix:''
+    });
   }
   maptoMessage = (data) => {
     this.setState({
@@ -62,6 +67,14 @@ export default class App extends Component {
   buttontoMap = (data) => {
     this.setState({
       buttontoMap: data
+    })
+  }
+  matrixtoRadar = (data)=>{
+    this.setState({
+      matrixtoRadar:data
+    })
+    this.setState({
+      matrixtoRadar:''
     })
   }
   componentDidMount () {
@@ -79,9 +92,9 @@ export default class App extends Component {
           </div>
 
           <div id='left-bottom' className='row no-gutters'>
-            <Radar id={this.state.maptoRadar} />
+            <Radar id={this.state.matrixtoRadar} />
             {/* step4 将数据传给matrix组件,问题在于:step4在step3之前执行了*/}
-            <Martix value={this.state.data} id={this.state.maptoMartix} />
+            <Martix matrixtoRadar={this.matrixtoRadar} value={this.state.data} id={this.state.maptoMartix} />
           </div>
         </div>
 
