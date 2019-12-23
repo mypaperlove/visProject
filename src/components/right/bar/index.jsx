@@ -35,8 +35,17 @@ export default class Bar extends Component {
       tooltip: {
         // trigger: 'item'
         trigger: 'axis',
+        formatter: function (params) {
+          let label = params[0].data.label.split(',');
+          let string = '一流学科建设名单<br />';
+          // console.log(label);
+          for (let i = 0; i < label.length; i++) {
+            string += (label[i] + '<br />')
+          }
+          return string;
+        },
         label: {
-          show: true,
+          show: false,
           color: '#333'
         }
       },

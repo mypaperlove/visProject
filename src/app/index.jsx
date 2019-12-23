@@ -24,6 +24,7 @@ export default class App extends Component {
         computerScienceAndTechnology: 50,
         softwareEngineering: 50,
       },
+      buttontoMap: '双一流',
       maptoRadar: '10003',
       maptoMartix: '10003',
       maptoMessage: '10003',
@@ -58,8 +59,13 @@ export default class App extends Component {
       maptoBar: data
     })
   }
+  buttontoMap = (data) => {
+    this.setState({
+      buttontoMap: data
+    })
+  }
   componentDidMount () {
-    //
+
   }
   render () {
     return (
@@ -68,8 +74,8 @@ export default class App extends Component {
 
           <div id='left-top' className='row no-gutters'>
             {/* step3 从control页面获取数据 */}
-            <Control handleChildData={this.handleData} />
-            <Map maptoRadar={this.maptoRadar} maptoMartix={this.maptoMartix} maptoMessage={this.maptoMessage} maptoBar={this.maptoBar} />
+            <Control handleChildData={this.handleData} buttontoMap={this.buttontoMap} />
+            <Map maptoRadar={this.maptoRadar} maptoMartix={this.maptoMartix} maptoMessage={this.maptoMessage} maptoBar={this.maptoBar} buttontoMap={this.state.buttontoMap} />
           </div>
 
           <div id='left-bottom' className='row no-gutters'>

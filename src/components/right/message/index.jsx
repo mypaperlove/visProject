@@ -11,7 +11,7 @@ export default class Message extends Component {
     return (
 
       <div id='mess'>
-        <div id='panel'>Label</div>
+        <div id='panel'>标签</div>
         <div id='message'></div>
       </div>
 
@@ -31,6 +31,14 @@ export default class Message extends Component {
         // 越往后的数据延迟越大
         return idx * 100;
       },
+      label: {
+        show: true,
+        interval: 0
+        // fontWeight: 'bolder',
+        // fontSize: 29,
+        // color: 'auto',
+
+      },
       animationEasingUpdate: 'bounceIn',
       // color: ['#fff', '#fff', '#fff'],
       series: [{
@@ -41,7 +49,16 @@ export default class Message extends Component {
           edgeLength: 10
         },
         roam: true,
-        data: data
+        data: data,
+        label: {
+          show: true,
+          fontWeight: 'bolder',
+          fontSize: 29,
+          color: 'auto',
+          normal: {
+            show: true
+          }
+        }
       }]
     }
     let mychart = echarts.init(document.getElementById('message'));
@@ -63,15 +80,8 @@ export default class Message extends Component {
         "name": titleString[i],
         "symbolSize": 50,
         "draggable": true,
-        "itemStyle": itemStyle[i],
-        "label": {
-          show: false,
-          fontWeight: 'bolder',
-          color: 'auto',
-          normal: {
-            show: true
-          },
-        },
+        "itemStyle": itemStyle[i]
+
       };
       data.push(obj);
     }
