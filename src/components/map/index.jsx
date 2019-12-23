@@ -16,7 +16,7 @@ export default class Map extends Component {
     BMap: {},
     overLaylist: [],
     zoom: 5,
-    title: '985'
+    title: ' '
   }
   render () {
     return (
@@ -35,9 +35,22 @@ export default class Map extends Component {
     })
   }
   componentDidUpdate () {
-    // console.log('hhhhhhhhhhhhhh');
-    let div = $('div.pie');
-    // console.log(div[0]);
+    console.log(this.state.title);
+    let div = $('.pie');
+    div.each((i, v) => {
+      let searchM = [];
+      for (let i = 0; i < table1.length; i++) {
+        if (table1[i]['学校编号'] == v.id) {
+          searchM = table1[i];
+          break;
+        }
+      }
+      if (searchM[this.state.title.toString()] == "0") {
+        $(v).hide(1000);
+      } else {
+        $(v).show(1000);
+      }
+    })
   }
   onChange (title, checked) {
     console.log(title);
@@ -303,8 +316,6 @@ export default class Map extends Component {
               }
             },
           }
-
-
         ]
       };
       echarts2.setOption(option);
@@ -349,6 +360,7 @@ export default class Map extends Component {
         div.style.width = "150px";
         div.style.height = "150px";
         div.value = true;
+        div.id = this._data['学校编号']
         div.className = 'pie';
         // marginLeft marginTop 的设置可以让这个div的中心点和给定的经纬度重合
         div.style.marginLeft = '-50px';
@@ -372,8 +384,6 @@ export default class Map extends Component {
         this._div.style.left = pixel.x + "px";
         this._div.style.top = (pixel.y - 30) + "px";
         this._div.className = 'pie';
-        this._div.value1 = 1;
-        this._div.value2 = 2;
       }
       ComplexCustomOverlay.prototype.addEventListener = function (event, fun) {
         this._div['on' + event] = fun;
