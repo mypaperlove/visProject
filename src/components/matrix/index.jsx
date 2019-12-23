@@ -172,10 +172,11 @@ export default class Matrix extends Component {
         min: 0,
         max: 100,
         calculable: false,
+        text:['高',"低"],
         orient: 'vertical',
         right: "3%",
         color: ["#3686e7", "#bcfdd6"],
-        bottom: '20%',
+        bottom: '15%',
         hoverLink: false
       },
       series: [{
