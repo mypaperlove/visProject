@@ -160,7 +160,7 @@ export default class Matrix extends Component {
         type: 'category',
         data: this.state.schools,
         triggerEvent: true,
-        offset: 1,
+        offset: 0,
         splitArea: {
           show: true
         },
