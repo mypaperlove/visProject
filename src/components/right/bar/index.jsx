@@ -12,6 +12,10 @@ export default class Bar extends Component {
     return (
       <div id='ba'>
         <div id='panel'>详细信息</div>
+        <div id='name' class='row no-gutters'>
+          <div className='col-md-6'>学科评估</div>
+          <div className='col-md-6'>学科建设</div>
+        </div>
         <div id='bar'></div>
       </div>
     )

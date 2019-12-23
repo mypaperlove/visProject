@@ -5,7 +5,8 @@ import itemStyle from './itemstyle.json'
 import table3 from '../../../json/table3.json'
 export default class Message extends Component {
   state = {
-    id: '10003'
+    id: '10003',
+    name: '清华大学'
   }
   render () {
     return (
@@ -23,8 +24,15 @@ export default class Message extends Component {
   }
 
   draw (id) {
-    let data = this.solveData(id);
+    let [data, name] = this.solveData(id);
     let option = {
+      title: {
+        text: name,
+        textStyle: {
+          fontSize: 16
+        },
+        left: 'center'
+      },
       backgroundColor: '#fff',
       tooltip: {},
       animationDurationUpdate: function (idx) {
@@ -71,9 +79,12 @@ export default class Message extends Component {
     table3.forEach((params) => {
       if (params['学校编号'] === id) {
         findData = params;
+        console.log(this);
+        // this.setState({
+        //   name: params['学校名称']
+        // })
       }
     })
-
     var titleString = findData['学校简介'].split('、');
     for (let i = 0; i < titleString.length; i++) {
       let obj = {
@@ -86,8 +97,10 @@ export default class Message extends Component {
       data.push(obj);
     }
     // console.log(findData);
-    return data;
+    return [data, findData['学校名称']];
   }
+
+
   static getDerivedStateFromProps (nextProps, prevState) {
     // console.log(nextProps.maptoMessage);
     return {
