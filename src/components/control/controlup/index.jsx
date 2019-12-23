@@ -52,14 +52,14 @@ export default class Controlup extends Component {
           </Header>
 
           <Content>
-            <div>
-              <Button id="ButtonA" onClick={this.clickButton.bind(this, '985')}>985</Button>
-              <Button id="ButtonB" onClick={this.clickButton.bind(this, '211')}>211</Button>
+            <div id="label">
+              <Button id="Button" shape="round" onClick={this.clickButton.bind(this, '985')}>985</Button>
+              <Button id="Button" shape="round" onClick={this.clickButton.bind(this, '211')}>211</Button>
 
             </div>
-            <div>
-              <Button id="ButtonC" onClick={this.clickButton.bind(this, '双一流')}>一流高校</Button>
-              <Button id="ButtonD" onClick={this.clickButton.bind(this, '一流学科建设高校')}>一流学科高校</Button>
+            <div id="label">
+              <Button id="Button" shape="round" onClick={this.clickButton.bind(this, '双一流')}>一流高校</Button>
+              <Button id="Button" shape="round" onClick={this.clickButton.bind(this, '一流学科建设高校')}>一流学科高校</Button>
             </div>
             <div>
               <Cascader
