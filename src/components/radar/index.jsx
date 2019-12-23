@@ -24,6 +24,14 @@ export default class Radar extends Component {
     componentDidMount() {
         let that = this;
         let option = {
+            title:{
+                text:"高校对比视图",
+                textStyle:{
+                    fontSize:14 ,
+                },
+                backgroundColor:"rgb(128, 128, 128)"
+            },
+            show:true,
             color: ["rgba(0,183,238, 1)", "rgba(86,199,60, 1)"],
             tooltip: {
                 show: true,

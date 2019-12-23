@@ -12,7 +12,7 @@ export default class Message extends Component {
     return (
 
       <div id='mess'>
-        <div id='panel'>标签</div>
+        <div id='panel'>学校属性</div>
         <div id='message'></div>
       </div>
 
@@ -28,10 +28,11 @@ export default class Message extends Component {
     let option = {
       title: {
         text: name,
+
         textStyle: {
           fontSize: 16
         },
-        left: 'center'
+        // left: 'center'
       },
       backgroundColor: '#fff',
       tooltip: {},

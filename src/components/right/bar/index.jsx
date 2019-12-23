@@ -11,10 +11,10 @@ export default class Bar extends Component {
   render () {
     return (
       <div id='ba'>
-        <div id='panel'>详细信息</div>
-        <div id='name' class='row no-gutters'>
+        <div id='panel'>学科门类建设和评估</div>
+        <div id='name' class='row no-gutters' style={{ padding: '8px' }}>
           <div className='col-md-6'>学科评估</div>
-          <div className='col-md-6'>学科建设</div>
+          <div className='col-md-6' style={{ textAlign: 'right', }}>学科建设</div>
         </div>
         <div id='bar'></div>
       </div>
