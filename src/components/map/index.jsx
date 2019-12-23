@@ -283,9 +283,9 @@ export default class Map extends Component {
         },
         series: [
           {
-            name: '面积模式',
+            name: '学科评估',
             type: 'pie',
-            radius: [10, 50],
+            radius: [5, 50],
             center: ['50%', '50%'],
             roseType: 'area',
             data: [
@@ -298,7 +298,7 @@ export default class Map extends Component {
               { value: data['C+'], name: 'C+' },
               { value: data['C'], name: 'C' },
               { value: data['C-'], name: 'C-' }
-            ].sort(function (a, b) { return a.value - b.value }),
+            ],
             label: {
               normal: {
                 show: false

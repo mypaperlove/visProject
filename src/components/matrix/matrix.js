@@ -120,3 +120,14 @@ export function getHeatMapData(modifieddata) {
     // console.log(HeatMap);
     return HeatMap;
 }
+
+export function addNewSchoolId(id,SchoolsIds){
+    let addIds = SchoolsIds.slice();
+    for(let index in SchoolsIds){
+        if(SchoolsIds[index]== id){
+            return addIds;
+        }
+    }
+    addIds.push(id);
+    return addIds;
+}

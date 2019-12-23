@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import './martix.css'
 import echarts from 'echarts'
-import { deleteRow, getYLables, getMatrixdata, modifyMatrixData, getHeatMapData, getSchoolsIds } from './matrix.js'
+import { deleteRow, getYLables, getMatrixdata, modifyMatrixData, getHeatMapData, getSchoolsIds, addNewSchoolId } from './matrix.js'
 export default class Matrix extends Component {
 
   state = {
     data: [],
     schools: [],
-    schoolsIds: [10055, 10003, 10213, 10216, 10001, 10022, 10026, 10052, 10080, 10141],
+    schoolsIds: [10001, 10003, 10007,10055,10610],
+    // schoolsIds: [],
   }
 
   render () {
@@ -198,12 +199,28 @@ export default class Matrix extends Component {
     var midHeatmap = echarts.init(document.getElementById('matrix'));
     midHeatmap.setOption(midHeatmapOption);
     //事件
+    var TimeFn = null;
     midHeatmap.on('click', function (params) {
-      if (params.componentType == 'yAxis') {
-      }
+      clearTimeout(TimeFn);
+      let schools = that.state.schools.slice();
+      let ids = that.state.schoolsIds.slice();
+      TimeFn = setTimeout(function(){
+        if (params.componentType == 'yAxis') {
+          for(let index in schools){
+            if(params.value == schools[index]){
+              console.log('被选中学校ID',ids[index]);
+              that.props.matrixtoRadar(ids[index]);
+              break;
+            }
+          }
+        }
+      },300)
+      
     });
 
     midHeatmap.on('dblclick', function (params) {
+      
+      clearTimeout(TimeFn);
       let deletedSchools = that.state.schools.slice();
       let deletedSchollsIds = that.state.schoolsIds.slice();
       if (params.componentType == 'yAxis') {
@@ -246,19 +263,19 @@ export default class Matrix extends Component {
     // let kkk = getMatrixdata([10019,10022]);
   }
 
-  static getDerivedStateFromProps (nextProps, prevState) {
+  static getDerivedStateFromProps (Props, prevState) {
     let modifieddata = [];
     let YLebles = [];
     let HeatMap = [];
     let SchoolsId = [];
     // console.log('nextProps', nextProps)
 
-    modifieddata = modifyMatrixData(getMatrixdata(prevState.schoolsIds), nextProps.value);
+    // console.log('传入的id',Props)
+    modifieddata = modifyMatrixData(getMatrixdata(addNewSchoolId(Props.id,prevState.schoolsIds)), Props.value);
     YLebles = getYLables(modifieddata);
     SchoolsId = getSchoolsIds(modifieddata);
     HeatMap = getHeatMapData(modifieddata);
-
-    if (SchoolsId != prevState.schoolsIds) {
+    if (SchoolsId !== prevState.schoolsIds) {
       // console.log('判断过')
       return {
         data: HeatMap,
