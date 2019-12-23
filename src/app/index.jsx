@@ -24,7 +24,7 @@ export default class App extends Component {
         computerScienceAndTechnology: 50,
         softwareEngineering: 50,
       },
-      buttontoMap: '双一流',
+      buttontoMap: ' ',
       maptoRadar: '10003',
       maptoMartix: '',
       maptoMessage: '10003',
