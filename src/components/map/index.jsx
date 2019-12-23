@@ -34,6 +34,11 @@ export default class Map extends Component {
       title: nextProps.buttontoMap
     })
   }
+  componentDidUpdate () {
+    // console.log('hhhhhhhhhhhhhh');
+    let div = $('div.pie');
+    // console.log(div[0]);
+  }
   onChange (title, checked) {
     console.log(title);
     let map = this.state.map;
@@ -203,42 +208,50 @@ export default class Map extends Component {
     //绘制单个饼图
     var drawPie = (obj, data) => {
       // console.log(this);
-      obj.addEventListener('mousedown', start.bind(this));
-      let originX, originY;
-      function start (e) {
-        // console.log("===================", this);
-        map.disableDragging();
-        originX = $(obj).offset().left;
-        originY = $(obj).offset().top;
-        document.addEventListener('mousemove', move);
-        document.addEventListener('mouseup', stop.bind(this));
-        console.log(obj.style.left, obj.style.top);
-        return false;
-      }
-      function move (e) {
-        let offsetX = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-        let offsetY = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-        let x = offsetX - 400 + 'px';
-        let y = offsetY + 'px'
-        obj.style.left = x;
-        obj.style.top = y;
-        // console.log(x, y);
-      }
-      function stop (e) {
-        // console.log(this);
-        let offsetX = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-        let offsetY = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-        console.log(offsetX, offsetY);
-        if (offsetX < 400 & offsetY > 650) this.props.maptoRadar(data['学校编号']);
-        else if (offsetY > 650) this.props.maptoMartix(data['学校编号']);
-        map.enableDragging();
-        obj.style.left = originX - 350 + 'px';
-        obj.style.top = originY + 50 + 'px';
-        document.removeEventListener('mousemove', move);
-        document.removeEventListener('mouseup', stop);
-        // console.log(this.props.handleMapData);
+      // obj.addEventListener('mousedown', start.bind(this));
+      // let originX, originY;
+      // function start (e) {
+      //   // console.log("===================", this);
+      //   map.disableDragging();
+      //   originX = $(obj).offset().left;
+      //   originY = $(obj).offset().top;
+      //   obj.addEventListener('mousemove', move);
+      //   obj.addEventListener('mouseup', stop.bind(this));
+      //   console.log(obj.style.left, obj.style.top);
+      //   return false;
+      // }
+      // function move (e) {
+      //   let offsetX = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+      //   let offsetY = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+      //   let x = offsetX - 400 + 'px';
+      //   let y = offsetY + 'px'
+      //   obj.style.left = x;
+      //   obj.style.top = y;
+      //   // console.log(x, y);
+      // }
+      // function stop (e) {
+      //   // console.log(this);
+      //   console.log('gggggggggggg----d');
+      //   let offsetX = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+      //   let offsetY = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+      //   console.log(offsetX, offsetY);
+      //   if (offsetX < 500) {
+      //     console.log('雷达图');
+      //     this.props.maptoRadar(data['学校编号']);
+      //   }
+      //   else {
+      //     console.log('热力图');
+      //     this.props.maptoMartix(data['学校编号']);
+      //   }
+      //   map.enableDragging();
+      //   obj.style.left = originX - 350 + 'px';
+      //   obj.style.top = originY + 50 + 'px';
+      //   obj.removeEventListener('mousedown', start);
+      //   obj.removeEventListener('mousemove', move);
+      //   obj.removeEventListener('mouseup', stop);
+      //   // console.log(this.props.handleMapData);
 
-      }
+      // }
       let echarts2 = echarts.init(obj);
       let option = {
         title: {
@@ -293,11 +306,12 @@ export default class Map extends Component {
         ]
       };
       echarts2.setOption(option);
-      echarts2.on('dblclick', function (params) {
+      echarts2.on('click', function (params) {
         obj.value = !obj.value;
-        console.log(obj.value);
+        console.log('hhhhhhhhhhhh');
         // obj.style.width = "50px";
         // console.log(this);
+        this.props.maptoMartix(data['学校编号']);
         this.props.maptoMessage(data['学校编号']);
         this.props.maptoBar(data['学校编号']);
       }.bind(this));
@@ -355,6 +369,9 @@ export default class Map extends Component {
         var pixel = this._map.pointToOverlayPixel(this._point);
         this._div.style.left = pixel.x + "px";
         this._div.style.top = (pixel.y - 30) + "px";
+        this._div.className = 'pie';
+        this._div.value1 = 1;
+        this._div.value2 = 2;
       }
       ComplexCustomOverlay.prototype.addEventListener = function (event, fun) {
         this._div['on' + event] = fun;
