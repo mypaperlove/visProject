@@ -147,7 +147,7 @@ export default class Radar extends Component {
                     type: 'radar',
                     //areaStyle: {normal: {}},
                     symbol: "circle",
-                    symbolSize: 10,
+                    symbolSize: 8,
                 }
                 //     {
                 //     name: "预算分配（Allocated Budget）",

@@ -60,7 +60,7 @@ export function getData(ids) {
                         normal: {
                             color: color1[n],
                             borderColor: color2[n],
-                            borderWidth: 10
+                            borderWidth: 4
                         }
                     },
                     areaStyle: {
