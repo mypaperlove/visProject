@@ -144,7 +144,9 @@ export default class Map extends Component {
     );
     map.enableMapClick = false;
     map.setMapStyleV2({
-      styleId: '5f12c5dfa5e8c70c2acc931abd973798'
+      // styleId: '5f12c5dfa5e8c70c2acc931abd973798'
+      styleId: '7d20b8a0d9e6a3a1c61e6e3f80bf4a44'
+
     });
 
     let mycomOverlayList = [];     //存放当前省数据

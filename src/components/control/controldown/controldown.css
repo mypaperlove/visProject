@@ -15,3 +15,10 @@ div {
     height: 0.5px !important;
     padding: 1px !important;
 }
+#ButtonP {
+    font-weight: bold;
+    text-align: center !important;
+    height: 30px !important;
+    width: 50% !important;
+    color: rgb(22, 2, 2) !important;
+}

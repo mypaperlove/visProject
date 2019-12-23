@@ -1,45 +1,29 @@
 #controlup {
     width: 100%;
     height: 30%;
-    border-right: 3px solid dimgray;
+    border-right: 3px solid rgb(3, 20, 41);
     /* background-color: rgb(80, 126, 28); */
 }
 
 Header {
-    color: rgb(31, 28, 28);
-    background: rgb(196, 195, 190) !important;
+    color: white;
+    background: rgb(56, 69, 85) !important;
     /* height: 50px !important; */
 }
 
-#ButtonA {
+#Button {
+    font-weight: bold;
     text-align: center !important;
     height: 50px !important;
     width: 50% !important;
-    color: red !important;
-}
-
-#ButtonB {
-    text-align: center !important;
-    height: 50px !important;
-    width: 50% !important;
-    color: rgb(216, 147, 19) !important;
-}
-
-#ButtonC {
-    text-align: center !important;
-    height: 50px !important;
-    width: 50% !important;
-    color: rgb(25, 226, 35) !important;
-}
-
-#ButtonD {
-    text-align: center !important;
-    height: 50px !important;
-    width: 50% !important;
-    color: rgb(10, 222, 250) !important;
+    color: rgb(22, 2, 2) !important;
+    background-color: rgb(204, 201, 211);
 }
 
 .ant-cascader-picker.ant-cascader-picker-show-search {
-    background-color: salmon;
+    background-color: rgb(210, 222, 224);
     width: 100% !important;
+}
+#label {
+    background-color: rgb(169, 182, 182);
 }
