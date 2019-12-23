@@ -133,7 +133,7 @@ export default class Radar extends Component {
                     max: 91,
                 },
                 {
-                    name: '双一流学科数',
+                    name: '一流学科培养数',
                     max: 5,
                 },
                 {
