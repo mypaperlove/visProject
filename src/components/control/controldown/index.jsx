@@ -96,6 +96,7 @@ export default class Controldown extends Component {
       data['computerScienceAndTechnology'] = this.state.computerScienceAndTechnology
       data['softwareEngineering'] = this.state.softwareEngineering
       // console.log(data)
+      // console.log(this);
       this.props.handleChildData(data);//step0 将数据上传给父组件control
       //console.log(this.props.value);
     }

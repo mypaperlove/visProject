@@ -35,7 +35,11 @@ export default class Controlup extends Component {
     //显示中国城市数据
     //console.log(CH_PRO_CITY)
   }
-
+  clickButton = (params, e) => {
+    this.props.buttontoMap(params);
+    // console.log(params);
+    // console.log(this);
+  }
   render () {
     const { Header, Content } = Layout;
     const options = CH_PRO_CITY['data'];
@@ -49,13 +53,13 @@ export default class Controlup extends Component {
 
           <Content>
             <div>
-              <Button id="ButtonA" onClick={this.clickButtonA}>985</Button>
-              <Button id="ButtonB" onClick={this.clickButtonB}>211</Button>
+              <Button id="ButtonA" onClick={this.clickButton.bind(this, '985')}>985</Button>
+              <Button id="ButtonB" onClick={this.clickButton.bind(this, '211')}>211</Button>
 
             </div>
             <div>
-              <Button id="ButtonC" onClick={this.clickButtonC}>一流高校</Button>
-              <Button id="ButtonD" onClick={this.clickButtonD}>一流学科高校</Button>
+              <Button id="ButtonC" onClick={this.clickButton.bind(this, '双一流')}>一流高校</Button>
+              <Button id="ButtonD" onClick={this.clickButton.bind(this, '一流学科建设高校')}>一流学科高校</Button>
             </div>
             <div>
               <Cascader

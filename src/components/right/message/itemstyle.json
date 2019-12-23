@@ -16,38 +16,30 @@
         }
     }, {
         "normal": {
-            "borderColor": "rgb(253,219,199)",
+            "borderColor": "rgb(214,96,77)",
             "borderWidth": 4,
             "shadowBlur": 100,
-            "shadowColor": "rgb(253,219,199)",
-            "color": "rgb(253,219,199)"
+            "shadowColor": "rgb(214,96,77)",
+            "color": "rgb(214,96,77)"
         }
     }, {
         "normal": {
-            "borderColor": "rgb(255,255,255)",
+            "borderColor": "rgb(145,191,219)",
             "borderWidth": 4,
             "shadowBlur": 100,
-            "shadowColor": "rgb(255,255,255)",
-            "color": "rgb(255,255,255)"
+            "shadowColor": "rgb(145,191,219)",
+            "color": "rgb(145,191,219)"
         }
     }, {
         "normal": {
-            "borderColor": "rgb(224,224,224)",
+            "borderColor": "rgb(103,0,31)",
             "borderWidth": 4,
             "shadowBlur": 100,
-            "shadowColor": "rgb(224,224,224)",
-            "color": "rgb(224,224,224)"
+            "shadowColor": "rgb(103,0,31)",
+            "color": "rgb(103,0,31)"
         }
     },
     {
-        "normal": {
-            "borderColor": "rgb(153,153,153)",
-            "borderWidth": 4,
-            "shadowBlur": 100,
-            "shadowColor": "rgb(153,153,153)",
-            "color": "rgb(153,153,153)"
-        }
-    }, {
         "normal": {
             "borderColor": "rgb(77,77,77)",
             "borderWidth": 4,
