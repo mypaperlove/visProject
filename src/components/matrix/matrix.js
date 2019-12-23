@@ -120,3 +120,18 @@ export function getHeatMapData(modifieddata) {
     // console.log(HeatMap);
     return HeatMap;
 }
+
+export function addNewSchoolId(id,SchoolsIds){
+    let addIds = SchoolsIds.slice();
+    console.log('原来',SchoolsIds);
+    console.log('插入值',id)
+    for(let index in SchoolsIds){
+        if(SchoolsIds[index]== id){
+            console.log('走到这里了')
+            return addIds;
+        }
+    }
+    addIds.push(id);
+    console.log('现在',addIds)
+    return addIds;
+}
