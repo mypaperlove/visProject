@@ -36,7 +36,7 @@ export default class Matrix extends Component {
       }
     },
     {
-      value: '双一流',
+      value: '双一流评分',
       textStyle: {
         width: '100%',
         fontSize: fontsize
