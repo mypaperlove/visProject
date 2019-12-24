@@ -7,7 +7,7 @@
 
 Header {
     color: white;
-    background: rgb(56, 69, 85) !important;
+    background: #5d5b6a !important;
     /* height: 50px !important; */
 }
 
@@ -24,6 +24,7 @@ Header {
     background-color: rgb(210, 222, 224);
     width: 100% !important;
 }
+
 #label {
     background-color: rgb(169, 182, 182);
 }

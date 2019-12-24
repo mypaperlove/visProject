@@ -1,75 +1,75 @@
 [{
         "normal": {
-            "borderColor": "rgb(178,24,43)",
+            "borderColor": "#8dd3c7",
             "borderWidth": 4,
             "shadowBlur": 100,
-            "shadowColor": "rgb(178,24,43)",
-            "color": "rgb(178,24,43)"
+            "shadowColor": "#8dd3c7",
+            "color": "#8dd3c7"
         }
     }, {
         "normal": {
-            "borderColor": "rgb(239,138,98)",
+            "borderColor": "#bc80bd",
             "borderWidth": 4,
             "shadowBlur": 100,
-            "shadowColor": "rgb(239,138,98)",
-            "color": "rgb(239,138,98)"
+            "shadowColor": "#bc80bd",
+            "color": "#bc80bd"
         }
     }, {
         "normal": {
-            "borderColor": "rgb(214,96,77)",
+            "borderColor": "#bebada",
             "borderWidth": 4,
             "shadowBlur": 100,
-            "shadowColor": "rgb(214,96,77)",
-            "color": "rgb(214,96,77)"
+            "shadowColor": "#bebada",
+            "color": "#bebada"
         }
     }, {
         "normal": {
-            "borderColor": "rgb(145,191,219)",
+            "borderColor": "#fb8072",
             "borderWidth": 4,
             "shadowBlur": 100,
-            "shadowColor": "rgb(145,191,219)",
-            "color": "rgb(145,191,219)"
+            "shadowColor": "#fb8072",
+            "color": "#fb8072"
         }
     }, {
         "normal": {
-            "borderColor": "rgb(103,0,31)",
+            "borderColor": "#80b1d3",
             "borderWidth": 4,
             "shadowBlur": 100,
-            "shadowColor": "rgb(103,0,31)",
-            "color": "rgb(103,0,31)"
+            "shadowColor": "#80b1d3",
+            "color": "#80b1d3"
         }
     },
     {
         "normal": {
-            "borderColor": "rgb(77,77,77)",
+            "borderColor": "#fdb462",
             "borderWidth": 4,
             "shadowBlur": 100,
-            "shadowColor": "rgb(77,77,77)",
-            "color": "rgb(77,77,77)"
+            "shadowColor": "#fdb462",
+            "color": "#fdb462"
         }
     }, {
         "normal": {
-            "borderColor": "rgb(155, 118, 127)",
+            "borderColor": "#b3de69",
             "borderWidth": 4,
             "shadowBlur": 100,
-            "shadowColor": "rgb(155, 118, 127)",
-            "color": "rgb(155, 118, 127)"
+            "shadowColor": "#b3de69",
+            "color": "#b3de69"
         }
     }, {
         "normal": {
-            "borderColor": "rgb(116, 207, 18)",
+            "borderColor": "#fccde5",
             "borderWidth": 4,
             "shadowBlur": 100,
-            "shadowColor": "rgb(116, 207, 18)",
-            "color": "rgb(116, 207, 18)"
+            "shadowColor": "#fccde5",
+            "color": "#fccde5"
         }
     }, {
         "normal": {
-            "borderColor": "rgb(98, 224, 224)",
+            "borderColor": "#d9d9d9",
             "borderWidth": 4,
             "shadowBlur": 100,
-            "shadowColor": "rgb(98, 224, 224)",
-            "color": "rgb(98, 224, 224)"
+            "shadowColor": "#d9d9d9",
+            "color": "#d9d9d9"
         }
     }
 ]

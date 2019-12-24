@@ -51,10 +51,15 @@ export default class Scatter extends Component {
       }],
       series: [{
         type: 'scatter',
-        symbolSize: 7,
-        data: datalist.sort(function (a, b) { return a.value - b.value; }),
+        symbolSize: 8,
+        data: datalist,
+        itemStyle: {
+          color: '#fb8072'
+        },
         label: {
           emphasis: {
+            color: '#a65628',
+            fontWeight: 'bold',
             show: true,
             formatter: function (param) {
               return param.data[3];

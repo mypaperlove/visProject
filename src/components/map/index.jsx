@@ -268,6 +268,7 @@ export default class Map extends Component {
 
       // }
       let echarts2 = echarts.init(obj);
+      let color = []
       let option = {
         title: {
           text: data['学校名称'],
@@ -289,15 +290,15 @@ export default class Map extends Component {
             center: ['50%', '50%'],
             roseType: 'area',
             data: [
-              { value: data['A+'], name: 'A+' },
-              { value: data['A'], name: 'A' },
-              { value: data['A-'], name: 'A-' },
-              { value: data['B+'], name: 'B+' },
-              { value: data['B'], name: 'B' },
-              { value: data['B-'], name: 'B-' },
-              { value: data['C+'], name: 'C+' },
-              { value: data['C'], name: 'C' },
-              { value: data['C-'], name: 'C-' }
+              { value: data['A+'], name: 'A+', itemStyle: { color: "#8dd3c7" } },
+              { value: data['A'], name: 'A', itemStyle: { color: "#ffffb3" } },
+              { value: data['A-'], name: 'A-', itemStyle: { color: "#bebada" } },
+              { value: data['B+'], name: 'B+', itemStyle: { color: "#fb8072" } },
+              { value: data['B'], name: 'B', itemStyle: { color: "#80b1d3" } },
+              { value: data['B-'], name: 'B-', itemStyle: { color: "#fdb462" } },
+              { value: data['C+'], name: 'C+', itemStyle: { color: "#b3de69" } },
+              { value: data['C'], name: 'C', itemStyle: { color: "#fccde5" } },
+              { value: data['C-'], name: 'C-', itemStyle: { color: "#d9d9d9" } }
             ],
             label: {
               normal: {

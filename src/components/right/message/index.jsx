@@ -12,7 +12,7 @@ export default class Message extends Component {
     return (
 
       <div id='mess'>
-        <div id='panel'>学校属性</div>
+        <div id='panel1'>学校属性</div>
         <div id='message'></div>
       </div>
 
