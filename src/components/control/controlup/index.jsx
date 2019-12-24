@@ -66,6 +66,9 @@ export default class Controlup extends Component {
           </Header>
 
           <Content>
+            {/* <div id="filter">
+              筛选
+            </div> */}
             <div id="label">
               <Button  shape="round" className={this.clsA} onClick={this.clickButton.bind(this, '985')}>985</Button>
               <Button  shape="round" className={this.clsB} onClick={this.clickButton.bind(this, '211')}>211</Button>
@@ -75,14 +78,14 @@ export default class Controlup extends Component {
               <Button  shape="round" className={this.clsC} onClick={this.clickButton.bind(this, '双一流')}>一流高校</Button>
               <Button  shape="round" className={this.clsD} onClick={this.clickButton.bind(this, '一流学科建设高校')}>一流学科高校</Button>
             </div>
-            <div>
+            {/* <div>
               <Cascader
                 defaultValue={['北京市', '海淀区']}
                 showSearch='true'
                 options={options}
                 onChange={this.onChange.bind(this)}
               />
-            </div>
+            </div> */}
           </Content>
         </Layout>
       </div>

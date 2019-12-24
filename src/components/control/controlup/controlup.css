@@ -1,7 +1,7 @@
 #controlup {
     width: 100%;
-    height: 30%;
-    border-right: 3px solid rgb(3, 20, 41);
+    height: 27%;
+    border-right: px solid rgb(3, 20, 41);
     /* background-color: rgb(80, 126, 28); */
 }
 
@@ -10,7 +10,13 @@ Header {
     background: #5d5b6a !important;
     /* height: 50px !important; */
 }
-
+#filter {
+    font: bold;
+    text-align: center !important;
+    color: black;
+    background: aqua !important;
+    height: 30px;
+}
 .Button {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     font-weight: bold;
