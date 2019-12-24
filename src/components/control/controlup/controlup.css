@@ -12,6 +12,7 @@ Header {
 }
 
 .Button {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     font-weight: bold;
     text-align: center !important;
     height: 50px !important;
@@ -28,35 +29,39 @@ Header {
 #label {
     background-color: rgb(182, 174, 169);
 }
+
 .ButtonClickedA {
     font-weight: bold;
     text-align: center !important;
     height: 50px !important;
     width: 50% !important;
-    color: rgb(22, 2, 2) !important;
-    background-color: rgb(168, 160, 159) !important;
+    color: #FFF !important;
+    background-color: #a6cee3 !important;
 }
+
 .ButtonClickedB {
     font-weight: bold;
     text-align: center !important;
     height: 50px !important;
     width: 50% !important;
-    color: rgb(22, 2, 2) !important;
-    background-color: rgb(168, 160, 159) !important;
+    color: #FFF !important;
+    background-color: #a6cee3 !important;
 }
+
 .ButtonClickedC {
     font-weight: bold;
     text-align: center !important;
     height: 50px !important;
     width: 50% !important;
-    color: rgb(22, 2, 2) !important;
-    background-color: rgb(168, 160, 159) !important;
+    color: #FFF !important;
+    background-color: #a6cee3 !important;
 }
+
 .ButtonClickedD {
     font-weight: bold;
     text-align: center !important;
     height: 50px !important;
     width: 50% !important;
-    color: rgb(22, 2, 2) !important;
-    background-color: rgb(168, 160, 159) !important;
+    color: #FFF !important;
+    background-color: #a6cee3 !important;
 }

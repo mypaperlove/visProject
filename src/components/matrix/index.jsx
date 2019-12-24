@@ -7,7 +7,7 @@ export default class Matrix extends Component {
   state = {
     data: [],
     schools: [],
-    schoolsIds: [10001, 10003, 10007,10055,10610],
+    schoolsIds: [10001, 10003, 10007, 10055, 10610],
     // schoolsIds: [],
   }
 
@@ -172,10 +172,11 @@ export default class Matrix extends Component {
         min: 0,
         max: 100,
         calculable: false,
-        text:['高',"低"],
+        text: ['高', "低"],
         orient: 'vertical',
         right: "3%",
         color: ["#3686e7", "#bcfdd6"],
+        // color: ["#0570b0", "#fff7fb"],
         bottom: '15%',
         hoverLink: false
       },
@@ -205,22 +206,22 @@ export default class Matrix extends Component {
       clearTimeout(TimeFn);
       let schools = that.state.schools.slice();
       let ids = that.state.schoolsIds.slice();
-      TimeFn = setTimeout(function(){
+      TimeFn = setTimeout(function () {
         if (params.componentType == 'yAxis') {
-          for(let index in schools){
-            if(params.value == schools[index]){
-              console.log('被选中学校ID',ids[index]);
+          for (let index in schools) {
+            if (params.value == schools[index]) {
+              console.log('被选中学校ID', ids[index]);
               that.props.matrixtoRadar(ids[index]);
               break;
             }
           }
         }
-      },300)
-      
+      }, 300)
+
     });
 
     midHeatmap.on('dblclick', function (params) {
-      
+
       clearTimeout(TimeFn);
       let deletedSchools = that.state.schools.slice();
       let deletedSchollsIds = that.state.schoolsIds.slice();
@@ -272,7 +273,7 @@ export default class Matrix extends Component {
     // console.log('nextProps', nextProps)
 
     // console.log('传入的id',Props)
-    modifieddata = modifyMatrixData(getMatrixdata(addNewSchoolId(Props.id,prevState.schoolsIds)), Props.value);
+    modifieddata = modifyMatrixData(getMatrixdata(addNewSchoolId(Props.id, prevState.schoolsIds)), Props.value);
     YLebles = getYLables(modifieddata);
     SchoolsId = getSchoolsIds(modifieddata);
     HeatMap = getHeatMapData(modifieddata);

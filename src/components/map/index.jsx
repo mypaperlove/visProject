@@ -24,7 +24,7 @@ export default class Map extends Component {
         <div className='col-md-9' id='map'>
         </div>
         <div id='switchColor'>
-          <Switch defaultChecked onChange={this.onChange.bind(this, this.state.title)} />
+          <Switch onChange={this.onChange.bind(this, this.state.title)} />
         </div>
       </>
     )
@@ -53,7 +53,7 @@ export default class Map extends Component {
     })
   }
   onChange (title, checked) {
-    console.log(title);
+    if (title == ' ') title = '985';
     let map = this.state.map;
     let overLaylist = [];
     let BMap = this.state.BMap;
