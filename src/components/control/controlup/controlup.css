@@ -11,7 +11,7 @@ Header {
     /* height: 50px !important; */
 }
 
-#Button {
+.Button {
     font-weight: bold;
     text-align: center !important;
     height: 50px !important;
@@ -26,5 +26,37 @@ Header {
 }
 
 #label {
-    background-color: rgb(169, 182, 182);
+    background-color: rgb(182, 174, 169);
+}
+.ButtonClickedA {
+    font-weight: bold;
+    text-align: center !important;
+    height: 50px !important;
+    width: 50% !important;
+    color: rgb(22, 2, 2) !important;
+    background-color: rgb(168, 160, 159) !important;
+}
+.ButtonClickedB {
+    font-weight: bold;
+    text-align: center !important;
+    height: 50px !important;
+    width: 50% !important;
+    color: rgb(22, 2, 2) !important;
+    background-color: rgb(168, 160, 159) !important;
+}
+.ButtonClickedC {
+    font-weight: bold;
+    text-align: center !important;
+    height: 50px !important;
+    width: 50% !important;
+    color: rgb(22, 2, 2) !important;
+    background-color: rgb(168, 160, 159) !important;
+}
+.ButtonClickedD {
+    font-weight: bold;
+    text-align: center !important;
+    height: 50px !important;
+    width: 50% !important;
+    color: rgb(22, 2, 2) !important;
+    background-color: rgb(168, 160, 159) !important;
 }
